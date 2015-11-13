@@ -84,8 +84,62 @@ int main(int argc, char* argv[])
 	SDL_Window* window = SDL_CreateWindow(window_title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, window_width, window_height, 0);
 	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
+	luaL_dostring(L, "__gettableval = player.file");
+	lua_getglobal(L, "__gettableval");
+	const char* player_file = lua_tostring(L, -1);
+	lua_pop(L, 1);
+	
+	SDL_Texture* player_texture = IMG_LoadTexture(renderer, player_file);
+	if(player_texture == NULL)
+	{
+		printf("Error: %s\n", IMG_GetError());
+		return 1;
+	}
+	
+	luaL_dostring(L, "__gettableval = player.x");
+	lua_getglobal(L, "__gettableval");
+	double player_x = lua_tonumber(L, -1);
+	lua_pop(L, 1);
+	
+	luaL_dostring(L, "__gettableval = player.y");
+	lua_getglobal(L, "__gettableval");
+	double player_y = lua_tonumber(L, -1);
+	lua_pop(L, 1);
+	
+	luaL_dostring(L, "__gettableval = player.width");
+	lua_getglobal(L, "__gettableval");
+	double player_width = lua_tointeger(L, -1);
+	lua_pop(L, 1);
+	
+	luaL_dostring(L, "__gettableval = player.height");
+	lua_getglobal(L, "__gettableval");
+	double player_height = lua_tointeger(L, -1);
+	lua_pop(L, 1);
+	
+	SDL_Rect player_properties = {
+		player_x, player_y, 
+		player_width, player_height
+	};
 
-	SDL_Delay(5000);
+	SDL_Event event;
+	int running = 1;
+	while(running)
+	{
+		while(SDL_PollEvent(&event))
+		{
+			switch(event.type)
+			{
+				case SDL_QUIT:
+					running = 0;
+				break;
+			}
+			
+			SDL_RenderClear(renderer);
+			SDL_RenderCopy(renderer, player_texture, NULL, &player_properties);
+			SDL_RenderPresent(renderer);
+		}
+	}
+	
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	lua_close(L);

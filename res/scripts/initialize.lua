@@ -5,3 +5,10 @@ window = {
 	height = 600
 }
 
+player = {
+	file = '../../res/pirat.png',
+	x = 350.0,
+	y = 250.0,
+	width = 100,
+	height = 100
+}
