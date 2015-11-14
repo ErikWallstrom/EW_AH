@@ -1,9 +1,10 @@
 print('Lua Initialized')
-window = {
+--[[window = {
 	title = 'Test Window',
 	width = 800,
 	height = 600
-}
+}]]
+window = 12
 
 scale = 6.0
 player = {
