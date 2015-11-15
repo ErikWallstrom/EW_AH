@@ -2,6 +2,7 @@
 
 int main(void)
 {
+	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SUKA BLYAD", "NOTHING IS WRONG FFS", NULL);
 	Program* program = initialize("../../res/scripts/initialize.lua");
 	program->window = SDL_CreateWindow(
 		script_getstring(program->script, "window.title"), 
