@@ -1,9 +1,11 @@
+//EW_AH
+#include "Array.h"
+#include "Script.h"
+
 //Standard library
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#include "Script.h"
 
 //Lua 5.3
 #include "../include/Lua_5.3/lua.h"
@@ -25,10 +27,11 @@ typedef struct
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 	const Uint8* keyboard_state;
+	Array* entities;
 	
 } Program;
 
-Program* Initialize(const char* init_script);
-void Terminate(Program* program);
-int Process_Events(Program* program);
-void Render(Program* program);
+Program* initialize(const char* init_script);
+void terminate(Program* program);
+int process_events(Program* program);
+int render(Program* program);

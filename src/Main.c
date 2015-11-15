@@ -2,7 +2,7 @@
 
 int main(void)
 {
-	Program* program = Initialize("../../res/scripts/initialize.lua");
+	Program* program = initialize("../../res/scripts/initialize.lua");
 	program->window = SDL_CreateWindow(
 		script_getstring(program->script, "window.title"), 
 		SDL_WINDOWPOS_CENTERED, 
@@ -10,46 +10,24 @@ int main(void)
 		script_getinteger(program->script, "window.width"), 
 		script_getinteger(program->script, "window.height"), 0
 	);
+	program->renderer = SDL_CreateRenderer(
+		program->window, -1, 
+		SDL_RENDERER_ACCELERATED | 
+		SDL_RENDERER_PRESENTVSYNC
+	);
 
 	int done = 0;
 	while(!done)
 	{
-		done = Process_Events(program);
-		Render(program);
+		done = process_events(program);
+		render(program);
 	}
-	
-	SDL_DestroyWindow(program->window);
-	Terminate(program);
+
+	terminate(program);
 	return 0;
 }
 
-int Process_Events(Program* program)
-{
-	SDL_Event event;
-	while(SDL_PollEvent(&event))
-	{
-		switch(event.type)
-		{
-			case SDL_QUIT:
-				return 1;
-			break;
-		}
-	}
-	
-	if(program->keyboard_state[SDL_SCANCODE_W])
-	{
-		
-	}
-	
-	return 0;
-}
-
-void Render(Program* program)
-{
-	
-}
-
-Program* Initialize(const char* init_script)
+Program* initialize(const char* init_script)
 {
 	if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO))
 	{
@@ -73,9 +51,10 @@ Program* Initialize(const char* init_script)
 	}
 	
 	Program* program = malloc(sizeof(program));
-	program->script = luaL_newstate();
 	program->keyboard_state = SDL_GetKeyboardState(NULL);
+	program->entities = array_create(8);
 	
+	program->script = luaL_newstate();
 	luaL_openlibs(program->script);
 	if(luaL_dofile(program->script, init_script))
 	{
@@ -86,14 +65,45 @@ Program* Initialize(const char* init_script)
 	return program;
 }
 
-void Terminate(Program* program)
+void terminate(Program* program)
 {
+	array_destroy(program->entities);
+	lua_close(program->script);
+	free(program);
+	
 	IMG_Quit();
 	Mix_Quit();
 	SDLNet_Quit();
 	TTF_Quit();
 	SDL_Quit();
+}
+
+int process_events(Program* program)
+{
+	SDL_Event event;
+	while(SDL_PollEvent(&event))
+	{
+		switch(event.type)
+		{
+			case SDL_QUIT:
+				return 1;
+			break;
+		}
+	}
 	
-	lua_close(program->script);
-	free(program);
+	if(program->keyboard_state[SDL_SCANCODE_W])
+	{
+		
+	}
+	
+	return 0;
+}
+
+int render(Program* program)
+{
+	SDL_SetRenderDrawColor(program->renderer, 0, 0, 255, 255);
+	SDL_RenderClear(program->renderer);
+	SDL_RenderPresent(program->renderer);
+	
+	return 0;
 }
