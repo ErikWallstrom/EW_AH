@@ -2,8 +2,9 @@
 
 int main(void)
 {
-	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SUKA BLYAD", "NOTHING IS WRONG FFS", NULL);
+	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SUKA BLYAD", "SUCCESS 1", NULL);
 	Program* program = initialize("../../res/scripts/initialize.lua");
+	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SUKA BLYAD", "SUCCESS 2", NULL);
 	program->window = SDL_CreateWindow(
 		script_getstring(program->script, "window.title"), 
 		SDL_WINDOWPOS_CENTERED, 
@@ -11,11 +12,13 @@ int main(void)
 		script_getinteger(program->script, "window.width"), 
 		script_getinteger(program->script, "window.height"), 0
 	);
+	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SUKA BLYAD", "SUCCESS 3", NULL);
 	program->renderer = SDL_CreateRenderer(
 		program->window, -1, 
 		SDL_RENDERER_ACCELERATED | 
 		SDL_RENDERER_PRESENTVSYNC
 	);
+	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SUKA BLYAD", "SUCCESS 4", NULL);
 
 	int done = 0;
 	while(!done)
@@ -24,8 +27,9 @@ int main(void)
 		render(program);
 	}
 
+	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SUKA BLYAD", "SUCCESS 5", NULL);
 	terminate(program);
-	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SUKA BLYAD", "NOTHING IS WRONG FFS", NULL);
+	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SUKA BLYAD", "SUCCESS 6", NULL);
 	return 0;
 }
 
