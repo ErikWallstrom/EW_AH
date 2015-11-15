@@ -2,9 +2,7 @@
 
 int main(void)
 {
-	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SUKA BLYAD", "SUCCESS 1", NULL);
 	Program* program = initialize("../../res/scripts/initialize.lua");
-	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SUKA BLYAD", "SUCCESS 2", NULL);
 	program->window = SDL_CreateWindow(
 		script_getstring(program->script, "window.title"), 
 		SDL_WINDOWPOS_CENTERED, 
@@ -12,13 +10,33 @@ int main(void)
 		script_getinteger(program->script, "window.width"), 
 		script_getinteger(program->script, "window.height"), 0
 	);
-	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SUKA BLYAD", "SUCCESS 3", NULL);
 	program->renderer = SDL_CreateRenderer(
 		program->window, -1, 
 		SDL_RENDERER_ACCELERATED | 
 		SDL_RENDERER_PRESENTVSYNC
 	);
-	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SUKA BLYAD", "SUCCESS 4", NULL);
+	
+	Array* arr = array_create();
+	
+	int x = 12;
+	int y = 33;
+	int z = -44;
+	
+	array_push(arr, 0, &x);
+	array_push(arr, 0, &y);
+	array_push(arr, 0, &x);
+	array_push(arr, 0, &z);
+	
+	printf("length: %i\n", array_getlength(arr));
+	system("pause");
+	array_pop(arr, 2);
+	
+	printf("length: %i\n", array_getlength(arr));
+	
+	printf("values: %i, %i, %i", *(int*)array_getvalue(arr, 0), *(int*)array_getvalue(arr, 1), *(int*)array_getvalue(arr, 2));
+	array_setvalue(arr, 1, NULL);
+	printf("value: %p", array_getvalue(arr, 1));
+	array_destroy(arr);
 
 	int done = 0;
 	while(!done)
@@ -27,58 +45,45 @@ int main(void)
 		render(program);
 	}
 
-	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SUKA BLYAD", "SUCCESS 5", NULL);
 	terminate(program);
-	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SUKA BLYAD", "SUCCESS 6", NULL);
 	return 0;
 }
 
 Program* initialize(const char* init_script)
 {
-	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SUKA BLYAD", "SUCCESS 1.1", NULL);
 	if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO))
 	{
 		return NULL;
 	}
-	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SUKA BLYAD", "SUCCESS 1.2", NULL);
 	if(TTF_Init())
 	{
 		return NULL;
 	}
-	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SUKA BLYAD", "SUCCESS 1.3", NULL);
 	if(SDLNet_Init())
 	{
 		return NULL;
 	}
-	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SUKA BLYAD", "SUCCESS 1.4", NULL);
 	if(!Mix_Init(MIX_INIT_MP3))
 	{
 		return NULL;
 	}
-	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SUKA BLYAD", "SUCCESS 1.5", NULL);
 	if(!IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG))
 	{
 		return NULL;
 	}
-	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SUKA BLYAD", "SUCCESS 1.6", NULL);
 	
 	Program* program = malloc(sizeof(program));
-	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SUKA BLYAD", "SUCCESS 1.7", NULL);
 	program->keyboard_state = SDL_GetKeyboardState(NULL);
-	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SUKA BLYAD", "SUCCESS 1.8", NULL);
-	program->entities = array_create(8);
-	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SUKA BLYAD", "SUCCESS 1.9", NULL);
+	//program->entities = array_create(8); //ERROR HERE!
 	
 	program->script = luaL_newstate();
-	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SUKA BLYAD", "SUCCESS 1.91", NULL);
 	luaL_openlibs(program->script);
-	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SUKA BLYAD", "SUCCESS 1.92", NULL);
 	if(luaL_dofile(program->script, init_script))
 	{
 		printf("Error: %s\n", lua_tostring(program->script, -1));
 		return NULL;
 	}
-	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SUKA BLYAD", "SUCCESS 1.93", NULL);
+
 	return program;
 }
 
@@ -86,7 +91,7 @@ void terminate(Program* program)
 {
 	SDL_DestroyRenderer(program->renderer);
 	SDL_DestroyWindow(program->window);
-	array_destroy(program->entities);
+	//array_destroy(program->entities); //ERROR HERE!
 	lua_close(program->script);
 	free(program);
 	

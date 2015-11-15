@@ -6,231 +6,113 @@ struct Array
 	void** value;
 	int max_size;
 	int used_size;
-	int prefered_size;
 };
 
-Array* array_create(int size)
+Array* array_create(void)
 {
-	Array* arr = malloc(sizeof(Array));
-	if (arr == NULL) //If error
+	Array* array = malloc(sizeof(array));
+	if (array == NULL) //If error
 	{
 		return NULL;
 	}
 
-	arr->value = calloc(size, sizeof(void*));
-	if (arr->value == NULL) //If error
+	array->value = malloc(sizeof(void*));
+	if (array->value == NULL) //If error
 	{
 		return NULL;
 	}
 
-	arr->max_size = size;
-	arr->used_size = 0;
-	arr->prefered_size = size;
+	array->max_size = 1;
+	array->used_size = 0;
 
-	return arr;
+	return array;
 }
 
-void array_destroy(Array* arr)
+void array_destroy(Array* array)
 {
-	if (arr != NULL)
+	if (array != NULL)
 	{
-		free(arr->value);
-		arr->max_size = 0;
-		arr->used_size = 0;
-		arr->prefered_size = 0;
-
-		free(arr);
+		free(array->value);
+		free(array);
 	}
 }
 
-int array_getLength(Array* arr)
+int array_pop(Array* array, int index)
 {
-	return arr->used_size;
+	if (index < array->used_size && index >= 0 && array->used_size > 0)
+	{
+
+		for (int i = index; i < array->used_size; i++)
+		{
+			array->value[i] = array->value[i + 1];
+		}
+
+		void* newMem = realloc(array->value, sizeof(void*) * (array->max_size - 1));
+		if (newMem == NULL) //If error
+		{
+			return 0;
+		}
+
+		array->value = newMem;
+		array->max_size--;
+		array->used_size--;
+
+		return 1;
+	}
+
+	return 0; //If error
 }
 
-void* array_getValue(Array* arr, int index)
+int array_push(Array* array, int index, void* value)
 {
-	if (index < arr->used_size && index >= 0)
+	if (index < array->used_size + 1 && index >= 0)
 	{
-		return arr->value[index];
+		if (array->used_size >= array->max_size)
+		{
+			void* newMem = realloc(array->value, sizeof(void*) * (array->max_size + 1));
+			if (newMem == NULL) //If error
+			{
+				return 0;
+			}
+
+			array->value = newMem;
+			array->max_size++;
+		}
+
+		for (int i = array->used_size; i > index; i--)
+		{
+			array->value[i] = array->value[i - 1];
+		}
+
+		array->value[index] = value;
+		array->used_size++;
+
+		return 1;
+	}
+
+	return 0; //If error
+}
+
+int array_getlength(Array* array)
+{
+	return array->used_size;
+}
+
+void* array_getvalue(Array* array, int index)
+{
+	if (index < array->used_size && index >= 0)
+	{
+		return array->value[index];
 	}
 
 	return NULL; //If error
 }
 
-int array_setValue(Array* arr, const int index, void* value)
+int array_setvalue(Array* array, const int index, void* value)
 {
-	if (index < arr->used_size && index >= 0)
+	if (index < array->used_size && index >= 0)
 	{
-		arr->value[index] = value;
-		return 1;
-	}
-
-	return 0; //If error
-}
-
-int array_popBack(Array* arr)
-{
-	if (arr->used_size > 0)
-	{
-		if (arr->max_size - 1 > arr->prefered_size)
-		{
-			void* newMem = realloc(arr->value, sizeof(void*) * (arr->max_size - 1));
-			if (newMem == NULL) //If error
-			{
-				return 0;
-			}
-
-			arr->value = newMem;
-			arr->max_size--;
-			arr->used_size--;
-		}
-		else
-		{
-			arr->value[arr->used_size - 1] = NULL;
-			arr->used_size--;
-		}
-	}
-
-	return 1;
-}
-
-int array_popFront(Array* arr)
-{
-	if (arr->used_size > 0)
-	{
-		for (int i = 0; i < arr->used_size; i++)
-		{
-			arr->value[i] = arr->value[i + 1];
-		}
-
-		if (arr->max_size - 1 > arr->prefered_size)
-		{
-			void* newMem = realloc(arr->value, sizeof(void*) * (arr->max_size - 1));
-			if (newMem == NULL) //If error
-			{
-				return 0;
-			}
-
-			arr->value = newMem;
-			arr->max_size--;
-			arr->used_size--;
-		}
-		else
-		{
-			arr->value[arr->used_size - 1] = NULL;
-			arr->used_size--;
-		}
-	}
-
-	return 1;
-}
-
-int array_popAtIndex(Array* arr, int index)
-{
-	if (index < arr->used_size && index >= 0)
-	{
-		if (arr->used_size > 0)
-		{
-			for (int i = index; i < arr->used_size; i++)
-			{
-				arr->value[i] = arr->value[i + 1];
-			}
-
-			if (arr->max_size - 1 > arr->prefered_size)
-			{
-				void* newMem = realloc(arr->value, sizeof(void*) * (arr->max_size - 1));
-				if (newMem == NULL) //If error
-				{
-					return 0;
-				}
-
-				arr->value = newMem;
-				arr->max_size--;
-				arr->used_size--;
-			}
-			else
-			{
-				arr->value[arr->used_size - 1] = NULL;
-				arr->used_size--;
-			}
-		}
-
-		return 1;
-	}
-
-	return 0; //If error
-}
-
-int array_pushBack(Array* arr, void* value)
-{
-	if (arr->used_size >= arr->max_size)
-	{
-		void* newMem = realloc(arr->value, sizeof(void*) * (arr->max_size + 1));
-		if (newMem == NULL) //If error
-		{
-			return 0;
-		}
-
-		arr->value = newMem;
-		arr->max_size++;
-	}
-
-	arr->value[arr->used_size] = value;
-	arr->used_size++;
-
-	return 1;
-}
-
-int array_pushFront(Array* arr, void* value)
-{
-	if (arr->used_size >= arr->max_size)
-	{
-		void* newMem = realloc(arr->value, sizeof(void*) * (arr->max_size + 1));
-		if (newMem == NULL) //If error
-		{
-			return 0;
-		}
-
-		arr->value = newMem;
-		arr->max_size++;
-	}
-
-	for (int i = arr->used_size; i > 0; i--)
-	{
-		arr->value[i] = arr->value[i - 1];
-	}
-
-	arr->value[0] = value;
-	arr->used_size++;
-
-	return 1;
-}
-
-int array_pushAtIndex(Array* arr, void* value, int index)
-{
-	if (index < arr->used_size && index >= 0)
-	{
-		if (arr->used_size >= arr->max_size)
-		{
-			void* newMem = realloc(arr->value, sizeof(void*) * (arr->max_size + 1));
-			if (newMem == NULL) //If error
-			{
-				return 0;
-			}
-
-			arr->value = newMem;
-			arr->max_size++;
-		}
-
-		for (int i = arr->used_size; i > index; i--)
-		{
-			arr->value[i] = arr->value[i - 1];
-		}
-
-		arr->value[index] = value;
-		arr->used_size++;
-
+		array->value[index] = value;
 		return 1;
 	}
 
