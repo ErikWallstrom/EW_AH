@@ -67,6 +67,8 @@ Program* initialize(const char* init_script)
 
 void terminate(Program* program)
 {
+	SDL_DestroyRenderer(program->renderer);
+	SDL_DestroyWindow(program->window);
 	array_destroy(program->entities);
 	lua_close(program->script);
 	free(program);
