@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "ScriptAux.h"
+#include "Script.h"
 
 //Lua 5.3
 #include "../include/Lua_5.3/lua.h"
