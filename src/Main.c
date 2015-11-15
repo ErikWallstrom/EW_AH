@@ -24,6 +24,7 @@ int main(void)
 	}
 
 	terminate(program);
+	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SUKA BLYAD", "NOTHING IS WRONG FFS", NULL);
 	return 0;
 }
 

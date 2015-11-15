@@ -3,3 +3,4 @@ gcc ../../src/Main.c ../../src/Array.c ../../src/Script.c -Wall -Wextra -o Progr
 echo(
 echo Build Done
 echo(
+pause
