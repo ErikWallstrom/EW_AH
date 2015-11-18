@@ -129,6 +129,7 @@ int array_push(Array* array, int index, void* value)
 		"Index out of bounds (array_push)", 
 		NULL
 	);
+	
 	return 0; //If error
 }
 
