@@ -31,28 +31,58 @@ Program* initialize(const char* init_script)
 {
 	if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO))
 	{
+		SDL_ShowSimpleMessageBox(
+			SDL_MESSAGEBOX_ERROR, 
+			"Error", 
+			SDL_GetError(), 
+			NULL
+		);
 		return NULL;
 	}
 	if(TTF_Init())
 	{
+		SDL_ShowSimpleMessageBox(
+			SDL_MESSAGEBOX_ERROR, 
+			"Error", 
+			TTF_GetError(), 
+			NULL
+		);
 		return NULL;
 	}
 	if(SDLNet_Init())
 	{
+		SDL_ShowSimpleMessageBox(
+			SDL_MESSAGEBOX_ERROR, 
+			"Error", 
+			SDLNet_GetError(), 
+			NULL
+		);
 		return NULL;
 	}
 	if(!Mix_Init(MIX_INIT_MP3))
 	{
+		SDL_ShowSimpleMessageBox(
+			SDL_MESSAGEBOX_ERROR, 
+			"Error", 
+			Mix_GetError(), 
+			NULL
+		);
 		return NULL;
 	}
 	if(!IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG))
 	{
+		SDL_ShowSimpleMessageBox(
+			SDL_MESSAGEBOX_ERROR, 
+			"Error", 
+			IMG_GetError(), 
+			NULL
+		);
 		return NULL;
 	}
 	
 	Program* program = malloc(sizeof(program));
 	program->keyboard_state = SDL_GetKeyboardState(NULL);
-	program->entities = array_create(); //ERROR HERE!
+	program->entities = array_create();
 	
 	program->script = luaL_newstate();
 	luaL_openlibs(program->script);
@@ -69,7 +99,7 @@ void terminate(Program* program)
 {
 	SDL_DestroyRenderer(program->renderer);
 	SDL_DestroyWindow(program->window);
-	array_destroy(program->entities); //ERROR HERE!
+	array_destroy(program->entities);
 	lua_close(program->script);
 	free(program);
 	
