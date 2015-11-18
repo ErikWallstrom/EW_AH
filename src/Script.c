@@ -4,6 +4,9 @@
 #include <string.h>
 #include <stdarg.h>
 
+//SDL2
+#include "../include/SDL2/SDL.h"
+
 //Lua 5.3
 #include "../include/Lua_5.3/lua.h"
 #include "../include/Lua_5.3/lualib.h"
@@ -15,6 +18,12 @@ const char* script_getstring(lua_State* L, const char* variable_name)
 	strcat(script, variable_name);
 	if(luaL_dostring(L, script)) //If error
 	{
+		SDL_ShowSimpleMessageBox(
+			SDL_MESSAGEBOX_ERROR, 
+			"Error", 
+			lua_tostring(L, -1), 
+			NULL
+		);
 		return NULL;
 	}
 	lua_getglobal( L, "__getvariable" );  
@@ -27,6 +36,12 @@ double script_getnumber(lua_State* L, const char* variable_name)
 	strcat(script, variable_name);
 	if(luaL_dostring(L, script)) //If error
 	{
+		SDL_ShowSimpleMessageBox(
+			SDL_MESSAGEBOX_ERROR, 
+			"Error", 
+			lua_tostring(L, -1), 
+			NULL
+		);
 		return 0.0;
 	}
 	lua_getglobal( L, "__getvariable" );  
@@ -39,6 +54,12 @@ int script_getinteger(lua_State* L, const char* variable_name)
 	strcat(script, variable_name);
 	if(luaL_dostring(L, script)) //If error
 	{
+		SDL_ShowSimpleMessageBox(
+			SDL_MESSAGEBOX_ERROR, 
+			"Error", 
+			lua_tostring(L, -1), 
+			NULL
+		);
 		return 0;
 	}
 	lua_getglobal( L, "__getvariable" );  
@@ -51,6 +72,12 @@ int script_getboolean(lua_State* L, const char* variable_name)
 	strcat(script, variable_name);
 	if(luaL_dostring(L, script)) //If error
 	{
+		SDL_ShowSimpleMessageBox(
+			SDL_MESSAGEBOX_ERROR, 
+			"Error", 
+			lua_tostring(L, -1), 
+			NULL
+		);
 		return 0;
 	}
 	lua_getglobal( L, "__getvariable" );  
@@ -64,6 +91,12 @@ int script_callfunction(lua_State* L, const char* function_name,
 	strcat(script, function_name);
 	if(luaL_dostring(L, script)) //If error
 	{
+		SDL_ShowSimpleMessageBox(
+			SDL_MESSAGEBOX_ERROR, 
+			"Error", 
+			lua_tostring(L, -1), 
+			NULL
+		);
 		return NULL;
 	}
 	lua_getglobal( L, "__getvariable" );
@@ -100,6 +133,12 @@ int script_callfunction(lua_State* L, const char* function_name,
 	
 	if(lua_pcall(L, num_params, num_returns, 0)) //If error
 	{
+		SDL_ShowSimpleMessageBox(
+			SDL_MESSAGEBOX_ERROR, 
+			"Error", 
+			lua_tostring(L, -1), 
+			NULL
+		);
 		return 1;
 	}
 	

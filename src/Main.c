@@ -16,28 +16,6 @@ int main(void)
 		SDL_RENDERER_PRESENTVSYNC
 	);
 	
-	Array* arr = array_create();
-	
-	int x = 12;
-	int y = 33;
-	int z = -44;
-	
-	array_push(arr, 0, &x);
-	array_push(arr, 0, &y);
-	array_push(arr, 0, &x);
-	array_push(arr, 0, &z);
-	
-	printf("length: %i\n", array_getlength(arr));
-	system("pause");
-	array_pop(arr, 2);
-	
-	printf("length: %i\n", array_getlength(arr));
-	
-	printf("values: %i, %i, %i", *(int*)array_getvalue(arr, 0), *(int*)array_getvalue(arr, 1), *(int*)array_getvalue(arr, 2));
-	array_setvalue(arr, 1, NULL);
-	printf("value: %p", array_getvalue(arr, 1));
-	array_destroy(arr);
-
 	int done = 0;
 	while(!done)
 	{
@@ -74,7 +52,7 @@ Program* initialize(const char* init_script)
 	
 	Program* program = malloc(sizeof(program));
 	program->keyboard_state = SDL_GetKeyboardState(NULL);
-	//program->entities = array_create(8); //ERROR HERE!
+	program->entities = array_create(); //ERROR HERE!
 	
 	program->script = luaL_newstate();
 	luaL_openlibs(program->script);
@@ -91,7 +69,7 @@ void terminate(Program* program)
 {
 	SDL_DestroyRenderer(program->renderer);
 	SDL_DestroyWindow(program->window);
-	//array_destroy(program->entities); //ERROR HERE!
+	array_destroy(program->entities); //ERROR HERE!
 	lua_close(program->script);
 	free(program);
 	
