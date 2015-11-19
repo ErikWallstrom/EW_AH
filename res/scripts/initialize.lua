@@ -8,7 +8,11 @@ window = {
 
 scale = 6.0
 player = {
-	file = '../../res/TB1.0.png',
+	file = {
+		"../../res/images/TB1.0.png",
+		"../../res/images/TP_1.0_LF.GO",
+		"../../res/images/TP_1.0_RF.GO"
+	}	
 	x = 350.0,
 	y = 250.0,
 	width = 7 * scale,
