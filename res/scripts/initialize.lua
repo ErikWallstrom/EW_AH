@@ -8,7 +8,9 @@ window = {
 
 scale = 6.0
 player = {
-	file = '../../res/TB1.0.png',
+	name = 'player',
+	file = '../../res/images/TB1.0.png',
+	
 	x = 350.0,
 	y = 250.0,
 	width = 7 * scale,

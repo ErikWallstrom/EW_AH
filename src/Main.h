@@ -1,6 +1,7 @@
 //EW_AH
 #include "Array.h"
 #include "Script.h"
+#include "Libraries.h"
 
 //Standard library
 #include <stdio.h>
@@ -27,11 +28,11 @@ typedef struct
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 	const Uint8* keyboard_state;
+	
+	Array* textures;
 	Array* entities;
 	
 } Program;
 
-Program* initialize(const char* init_script);
-void terminate(Program* program);
 int process_events(Program* program);
 int render(Program* program);
