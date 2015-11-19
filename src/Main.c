@@ -2,19 +2,39 @@
 
 int main(void)
 {
-	Program* program = initialize("../../res/scripts/initialize.lua");
-	program->window = SDL_CreateWindow(
-		script_getstring(program->script, "window.title"), 
-		SDL_WINDOWPOS_CENTERED, 
-		SDL_WINDOWPOS_CENTERED, 
-		script_getinteger(program->script, "window.width"), 
-		script_getinteger(program->script, "window.height"), 0
-	);
-	program->renderer = SDL_CreateRenderer(
-		program->window, -1, 
-		SDL_RENDERER_ACCELERATED | 
-		SDL_RENDERER_PRESENTVSYNC
-	);
+	initialize_libraries();
+	
+	lua_State* script = luaL_newstate();
+	luaL_openlibs(script);
+	if(luaL_dofile(script, "initialize.lua"))
+	{
+		SDL_ShowSimpleMessageBox(
+			SDL_MESSAGEBOX_ERROR, 
+			"Error", 
+			lua_tostring(L, -1), 
+			NULL
+		);
+		return NULL;
+	}
+	
+	Program program = {
+		script, 
+		SDL_CreateWindow(
+			script_getstring(program->script, "window.title"), 
+			SDL_WINDOWPOS_CENTERED, 
+			SDL_WINDOWPOS_CENTERED, 
+			script_getinteger(program->script, "window.width"), 
+			script_getinteger(program->script, "window.height"), 0
+		),
+		SDL_CreateRenderer(
+			program->window, -1, 
+			SDL_RENDERER_ACCELERATED | 
+			SDL_RENDERER_PRESENTVSYNC
+		),
+		SDL_GetKeyboardState(NULL),
+		array_create(),
+		array_create()
+	};
 	
 	int done = 0;
 	while(!done)
@@ -22,92 +42,14 @@ int main(void)
 		done = process_events(program);
 		render(program);
 	}
-
-	terminate(program);
+	
+	array_destroy(program.textures);
+	array_destroy(program.entities);
+	SDL_DestroyRenderer(program.renderer);
+	SDL_DestroyWindow(program.window);
+	
+	terminate_libraries();
 	return 0;
-}
-
-Program* initialize(const char* init_script)
-{
-	if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO))
-	{
-		SDL_ShowSimpleMessageBox(
-			SDL_MESSAGEBOX_ERROR, 
-			"Error", 
-			SDL_GetError(), 
-			NULL
-		);
-		return NULL;
-	}
-	if(TTF_Init())
-	{
-		SDL_ShowSimpleMessageBox(
-			SDL_MESSAGEBOX_ERROR, 
-			"Error", 
-			TTF_GetError(), 
-			NULL
-		);
-		return NULL;
-	}
-	if(SDLNet_Init())
-	{
-		SDL_ShowSimpleMessageBox(
-			SDL_MESSAGEBOX_ERROR, 
-			"Error", 
-			SDLNet_GetError(), 
-			NULL
-		);
-		return NULL;
-	}
-	if(!Mix_Init(MIX_INIT_MP3))
-	{
-		SDL_ShowSimpleMessageBox(
-			SDL_MESSAGEBOX_ERROR, 
-			"Error", 
-			Mix_GetError(), 
-			NULL
-		);
-		return NULL;
-	}
-	if(!IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG))
-	{
-		SDL_ShowSimpleMessageBox(
-			SDL_MESSAGEBOX_ERROR, 
-			"Error", 
-			IMG_GetError(), 
-			NULL
-		);
-		return NULL;
-	}
-	
-	Program* program = malloc(sizeof(program));
-	program->keyboard_state = SDL_GetKeyboardState(NULL);
-	program->entities = array_create();
-	
-	program->script = luaL_newstate();
-	luaL_openlibs(program->script);
-	if(luaL_dofile(program->script, init_script))
-	{
-		printf("Error: %s\n", lua_tostring(program->script, -1));
-		return NULL;
-	}
-
-	return program;
-}
-
-void terminate(Program* program)
-{
-	SDL_DestroyRenderer(program->renderer);
-	SDL_DestroyWindow(program->window);
-	array_destroy(program->entities);
-	lua_close(program->script);
-	free(program);
-	
-	IMG_Quit();
-	Mix_Quit();
-	SDLNet_Quit();
-	TTF_Quit();
-	SDL_Quit();
 }
 
 int process_events(Program* program)
@@ -123,11 +65,6 @@ int process_events(Program* program)
 		}
 	}
 	
-	if(program->keyboard_state[SDL_SCANCODE_W])
-	{
-		
-	}
-	
 	return 0;
 }
 
@@ -135,7 +72,12 @@ int render(Program* program)
 {
 	SDL_SetRenderDrawColor(program->renderer, 0, 0, 255, 255);
 	SDL_RenderClear(program->renderer);
-	SDL_RenderPresent(program->renderer);
 	
+	for(int i = 0; i < array_getlength(program->entities); i++)
+	{
+		 
+	}
+	
+	SDL_RenderPresent(program->renderer);
 	return 0;
 }
