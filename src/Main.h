@@ -29,10 +29,24 @@ typedef struct
 	SDL_Renderer* renderer;
 	const Uint8* keyboard_state;
 	
-	Array* textures;
 	Array* entities;
 	
 } Program;
+
+typedef struct
+{
+	const char* name;
+	Array* components;
+	
+} Entity;
+
+typedef struct
+{
+	SDL_Texture* texture;
+	double x, y;
+	int width, height;
+	
+} Graphics_Component;
 
 int process_events(Program* program);
 int render(Program* program);

@@ -1,3 +1,5 @@
+#include "Libraries.h"
+
 //SDL2
 #include "../include/SDL2/SDL.h"
 #include "../include/SDL2/SDL_ttf.h"
@@ -5,7 +7,7 @@
 #include "../include/SDL2/SDL_mixer.h"
 #include "../include/SDL2/SDL_image.h"
 
-int initialize_libraries(const char* init_script)
+int initialize_libraries(void)
 {
 	if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO))
 	{
@@ -57,9 +59,11 @@ int initialize_libraries(const char* init_script)
 		);
 		return 1;
 	}
+	
+	return 0;
 }
 
-void terminate_libraries(Program* program)
+void terminate_libraries(void)
 {
 	IMG_Quit();
 	Mix_Quit();

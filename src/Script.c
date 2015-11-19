@@ -27,7 +27,13 @@ const char* script_getstring(lua_State* L, const char* variable_name)
 		return NULL;
 	}
 	lua_getglobal( L, "__getvariable" );  
-	return lua_tostring(L, -1);
+	
+	if(lua_isstring(L, -1))
+	{
+		return lua_tostring(L, -1);
+	}
+	
+	return NULL;
 }
 	
 double script_getnumber(lua_State* L, const char* variable_name)
@@ -83,6 +89,29 @@ int script_getboolean(lua_State* L, const char* variable_name)
 	lua_getglobal( L, "__getvariable" );  
 	return lua_toboolean(L, -1);
 }
+
+int	script_getnil(lua_State* L, const char* variable_name)
+{
+	char script[32] = "__getvariable=";
+	strcat(script, variable_name);
+	if(luaL_dostring(L, script)) //If error
+	{
+		SDL_ShowSimpleMessageBox(
+			SDL_MESSAGEBOX_ERROR, 
+			"Error", 
+			lua_tostring(L, -1), 
+			NULL
+		);
+		return 0;
+	}
+	lua_getglobal( L, "__getvariable" );  
+	if(lua_isnil(L, -1))
+	{
+		return 1;
+	}
+	
+	return 0;
+}
 	
 int script_callfunction(lua_State* L, const char* function_name,
 						int num_returns, const char* parameters, ...)
@@ -97,7 +126,7 @@ int script_callfunction(lua_State* L, const char* function_name,
 			lua_tostring(L, -1), 
 			NULL
 		);
-		return NULL;
+		return 1;
 	}
 	lua_getglobal( L, "__getvariable" );
 	
@@ -144,3 +173,4 @@ int script_callfunction(lua_State* L, const char* function_name,
 	
 	return 0;
 }
+

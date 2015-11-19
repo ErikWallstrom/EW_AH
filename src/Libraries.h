@@ -1,7 +1,7 @@
-#ifndef SCRIPT_H
-#define SCRIPT_H
+#ifndef LIBRARIES_H
+#define LIBRARIES_H
 
-	int initialize_libraries(const char* init_script);
-	void terminate_libraries(Program* program);
+	int initialize_libraries(void);
+	void terminate_libraries(void);
 
 #endif
