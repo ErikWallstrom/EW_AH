@@ -1,11 +1,12 @@
 #include "Main.h"
 
-void test(Program* program)
+/*void test(Program* program)
 {
 	Entity* entity = malloc(sizeof(entity));
 	entity->name = "player";
 	if(!script_getnil(program->script, "player.graphics_component"))
 	{
+		printf("Hello W\n");
 		Graphics_Component* gcomponent = malloc(sizeof(gcomponent));
 		if(gcomponent == NULL)
 		{
@@ -19,7 +20,6 @@ void test(Program* program)
 			return;
 		}
 		
-		printf("%s\n", script_getstring(program->script, "player.graphics_component.file"));
 		gcomponent->texture = IMG_LoadTexture(program->renderer, script_getstring(program->script, "player.graphics_component.file"));
 		if(gcomponent->texture == NULL)
 		{
@@ -32,43 +32,56 @@ void test(Program* program)
 			
 			return;
 		}
-		printf("Hello4\n");
+
 		gcomponent->x = script_getnumber(program->script, "player.graphics_component.x");
-		printf("Hello5\n");
 		gcomponent->y = script_getnumber(program->script, "player.graphics_component.y");
-		printf("Hello6\n");
 		gcomponent->width = script_getinteger(program->script, "player.graphics_component.width");
-		printf("Hello7\n");
 		gcomponent->height = script_getinteger(program->script, "player.graphics_component.height");
 	
-		printf("Hello8\n");
 		array_push(entity->components, 0, gcomponent);
-		printf("Hello9\n");
 	}
 	
 	array_push(program->entities, 0, entity);
-}
+}*/
 
-int main(void)
+lua_State* initialize_script(const char* file)
 {
-	initialize_libraries();
-	
-	lua_State* script = luaL_newstate();
-	luaL_openlibs(script);
-	if(luaL_dofile(script, "../../res/scripts/initialize.lua"))
+	lua_State* L = luaL_newstate();
+	if(L == NULL)
 	{
 		SDL_ShowSimpleMessageBox(
 			SDL_MESSAGEBOX_ERROR, 
 			"Error", 
-			lua_tostring(script, -1), 
+			lua_tostring(L, -1), 
 			NULL
 		);
+		return NULL;
+	}
+	
+	luaL_openlibs(L);
+	if(luaL_dofile(L, file))
+	{
+		SDL_ShowSimpleMessageBox(
+			SDL_MESSAGEBOX_ERROR, 
+			"Error", 
+			lua_tostring(L, -1), 
+			NULL
+		);
+		return NULL;
+	}
+	
+	return L;
+}
+
+int main(void)
+{
+	if(initialize_libraries())
+	{
 		return 1;
 	}
-	printf("%s\n", script_getstring(script, "player.graphics_component.file"));
-	
+
 	Program program = {
-		script, 
+		initialize_script("../../res/scripts/initialize.lua"), 
 		SDL_CreateWindow(
 			script_getstring(program.script, "window.title"), 
 			SDL_WINDOWPOS_CENTERED, 
@@ -90,13 +103,14 @@ int main(void)
 	int done = 0;
 	while(!done)
 	{
-		done = process_events(&program);
 		render(&program);
+		done = process_events(&program);
 	}
 
-	array_destroy(program.entities);
-	SDL_DestroyRenderer(program.renderer);
+	lua_close(program.script);
 	SDL_DestroyWindow(program.window);
+	SDL_DestroyRenderer(program.renderer);
+	array_destroy(program.entities);
 	
 	terminate_libraries();
 	return 0;

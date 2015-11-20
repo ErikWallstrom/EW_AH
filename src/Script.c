@@ -27,13 +27,7 @@ const char* script_getstring(lua_State* L, const char* variable_name)
 		return NULL;
 	}
 	lua_getglobal( L, "__getvariable" );  
-	
-	if(lua_isstring(L, -1))
-	{
-		return lua_tostring(L, -1);
-	}
-	
-	return NULL;
+	return lua_tostring(L, -1);
 }
 	
 double script_getnumber(lua_State* L, const char* variable_name)

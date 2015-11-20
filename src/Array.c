@@ -13,7 +13,7 @@ struct Array
 
 Array* array_create(void)
 {
-	Array* array = malloc(sizeof(array));
+	Array* array = malloc(sizeof(Array));
 	if (array == NULL) //If error
 	{
 		SDL_ShowSimpleMessageBox(
@@ -47,7 +47,11 @@ void array_destroy(Array* array)
 {
 	if (array != NULL)
 	{
-		free(array->value);
+		if(array->value != NULL)
+		{
+			free(array->value);
+		}
+		
 		free(array);
 	}
 }
@@ -62,7 +66,7 @@ int array_pop(Array* array, int index)
 			array->value[i] = array->value[i + 1];
 		}
 
-		void* newMem = realloc(array->value, sizeof(void*) * (array->max_size - 1));
+		void* newMem = realloc(array->value, sizeof(void*) * ((array->used_size > 1) ? (array->used_size - 1) : (1)));
 		if (newMem == NULL) //If error
 		{
 			SDL_ShowSimpleMessageBox(
