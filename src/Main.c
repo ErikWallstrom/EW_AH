@@ -2,12 +2,12 @@
 
 void test(Program* program)
 {
-	Entity* entity = malloc(sizeof(entity));
+	Entity* entity = malloc(sizeof(Entity));
 	entity->name = "player";
+	entity->components = array_create();
 	if(!script_getnil(program->script, "player.graphics_component"))
 	{
-		printf("Hello W\n");
-		Graphics_Component* gcomponent = malloc(sizeof(gcomponent));
+		Graphics_Component* gcomponent = malloc(sizeof(Graphics_Component));
 		if(gcomponent == NULL)
 		{
 			SDL_ShowSimpleMessageBox(
@@ -98,9 +98,7 @@ int main(void)
 		array_create(),
 	};
 	
-	const char* t = script_getstring(program.script, "player.graphics_component.file");
-	printf("file: %s\n", t);
-	//test(&program);
+	test(&program);
 	
 	int done = 0;
 	while(!done)
