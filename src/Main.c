@@ -1,6 +1,6 @@
 #include "Main.h"
 
-/*void test(Program* program)
+void test(Program* program)
 {
 	Entity* entity = malloc(sizeof(entity));
 	entity->name = "player";
@@ -42,7 +42,7 @@
 	}
 	
 	array_push(program->entities, 0, entity);
-}*/
+}
 
 lua_State* initialize_script(const char* file)
 {
@@ -98,6 +98,8 @@ int main(void)
 		array_create(),
 	};
 	
+	const char* t = script_getstring(program.script, "player.graphics_component.file");
+	printf("file: %s\n", t);
 	//test(&program);
 	
 	int done = 0;

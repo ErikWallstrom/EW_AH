@@ -2,6 +2,7 @@
 	
 //Standard Library
 #include <string.h>
+#include <stdlib.h>
 #include <stdarg.h>
 
 //SDL2
@@ -14,9 +15,12 @@
 
 const char* script_getstring(lua_State* L, const char* variable_name)
 {
-	char script[32] = "__getvariable=";
-	strcat(script, variable_name);
-	if(luaL_dostring(L, script)) //If error
+	const char script[] = "__getvariable=";
+	char* buffer = malloc(strlen(script) + strlen(variable_name) + 1);
+	memcpy(buffer, script, strlen(script));
+	memcpy(buffer + strlen(script), variable_name, strlen(variable_name) + 1);
+	
+	if(luaL_dostring(L, buffer)) //If error
 	{
 		SDL_ShowSimpleMessageBox(
 			SDL_MESSAGEBOX_ERROR, 
@@ -32,8 +36,11 @@ const char* script_getstring(lua_State* L, const char* variable_name)
 	
 double script_getnumber(lua_State* L, const char* variable_name)
 {
-	char script[32] = "__getvariable=";
-	strcat(script, variable_name);
+	const char script[] = "__getvariable=";
+	char* buffer = malloc(strlen(script) + strlen(variable_name) + 1);
+	memcpy(buffer, script, strlen(script));
+	memcpy(buffer + strlen(script), variable_name, strlen(variable_name) + 1);
+	
 	if(luaL_dostring(L, script)) //If error
 	{
 		SDL_ShowSimpleMessageBox(
@@ -50,8 +57,11 @@ double script_getnumber(lua_State* L, const char* variable_name)
 	
 int script_getinteger(lua_State* L, const char* variable_name)
 {
-	char script[32] = "__getvariable=";
-	strcat(script, variable_name);
+	const char script[] = "__getvariable=";
+	char* buffer = malloc(strlen(script) + strlen(variable_name) + 1);
+	memcpy(buffer, script, strlen(script));
+	memcpy(buffer + strlen(script), variable_name, strlen(variable_name) + 1);
+	
 	if(luaL_dostring(L, script)) //If error
 	{
 		SDL_ShowSimpleMessageBox(
@@ -68,8 +78,11 @@ int script_getinteger(lua_State* L, const char* variable_name)
 	
 int script_getboolean(lua_State* L, const char* variable_name)
 {
-	char script[32] = "__getvariable=";
-	strcat(script, variable_name);
+	const char script[] = "__getvariable=";
+	char* buffer = malloc(strlen(script) + strlen(variable_name) + 1);
+	memcpy(buffer, script, strlen(script));
+	memcpy(buffer + strlen(script), variable_name, strlen(variable_name) + 1);
+	
 	if(luaL_dostring(L, script)) //If error
 	{
 		SDL_ShowSimpleMessageBox(
@@ -86,8 +99,11 @@ int script_getboolean(lua_State* L, const char* variable_name)
 
 int	script_getnil(lua_State* L, const char* variable_name)
 {
-	char script[32] = "__getvariable=";
-	strcat(script, variable_name);
+	const char script[] = "__getvariable=";
+	char* buffer = malloc(strlen(script) + strlen(variable_name) + 1);
+	memcpy(buffer, script, strlen(script));
+	memcpy(buffer + strlen(script), variable_name, strlen(variable_name) + 1);
+	
 	if(luaL_dostring(L, script)) //If error
 	{
 		SDL_ShowSimpleMessageBox(
@@ -110,8 +126,11 @@ int	script_getnil(lua_State* L, const char* variable_name)
 int script_callfunction(lua_State* L, const char* function_name,
 						int num_returns, const char* parameters, ...)
 {
-	char script[32] = "__getvariable=";
-	strcat(script, function_name);
+	const char script[] = "__getvariable=";
+	char* buffer = malloc(strlen(script) + strlen(variable_name) + 1);
+	memcpy(buffer, script, strlen(script));
+	memcpy(buffer + strlen(script), variable_name, strlen(variable_name) + 1);
+	
 	if(luaL_dostring(L, script)) //If error
 	{
 		SDL_ShowSimpleMessageBox(
