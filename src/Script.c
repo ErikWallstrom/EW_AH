@@ -1,17 +1,81 @@
 #include "Script.h"
-	
+
 //Standard Library
 #include <string.h>
 #include <stdlib.h>
 #include <stdarg.h>
 
 //SDL2
-#include "../include/SDL2/SDL.h"
+#include "../include/SDL2/SDL.h" //For SDL_ShowSimpleMessageBox
 
 //Lua 5.3
-#include "../include/Lua_5.3/lua.h"
 #include "../include/Lua_5.3/lualib.h"
 #include "../include/Lua_5.3/lauxlib.h"
+
+lua_State* script_initialize(const char* file)
+{
+	lua_State* L = luaL_newstate();
+	if(L == NULL)
+	{
+		SDL_ShowSimpleMessageBox(
+			SDL_MESSAGEBOX_ERROR, 
+			"Error", 
+			lua_tostring(L, -1), 
+			NULL
+		);
+		return NULL;
+	}
+	
+	luaL_openlibs(L);
+	if(luaL_dofile(L, file))
+	{
+		SDL_ShowSimpleMessageBox(
+			SDL_MESSAGEBOX_ERROR, 
+			"Error", 
+			lua_tostring(L, -1), 
+			NULL
+		);
+		return NULL;
+	}
+	
+	return L;
+}
+
+double script_getnumber(lua_State* L, const char* variable_name)
+{
+	const char script[] = "__getvariable=";
+	char* buffer = malloc(strlen(script) + strlen(variable_name) + 1);
+	strcpy(buffer, script);
+	strcpy(buffer + strlen(script), variable_name);
+	
+	if(luaL_dostring(L, buffer)) //If error
+	{
+		SDL_ShowSimpleMessageBox(
+			SDL_MESSAGEBOX_ERROR, 
+			"Error", 
+			lua_tostring(L, -1), 
+			NULL
+		);
+		return 0.0;
+	}
+	lua_getglobal( L, "__getvariable" );  
+	if(!lua_isnumber(L, -1))
+	{
+		SDL_ShowSimpleMessageBox(
+			SDL_MESSAGEBOX_WARNING, 
+			"Warning", 
+			"Lua variable is not a number", 
+			NULL
+		);
+		lua_pop(L, 1);
+		return 0.0;
+	}
+	
+	double val = lua_tonumber(L, -1);
+	lua_pop(L, 1);
+	
+	return val;
+}
 
 const char* script_getstring(lua_State* L, const char* variable_name)
 {
@@ -31,28 +95,21 @@ const char* script_getstring(lua_State* L, const char* variable_name)
 		return NULL;
 	}
 	lua_getglobal( L, "__getvariable" );  
-	return lua_tostring(L, -1);
-}
-	
-double script_getnumber(lua_State* L, const char* variable_name)
-{
-	const char script[] = "__getvariable=";
-	char* buffer = malloc(strlen(script) + strlen(variable_name) + 1);
-	strcpy(buffer, script);
-	strcpy(buffer + strlen(script), variable_name);
-	
-	if(luaL_dostring(L, buffer)) //If error
+	if(!lua_isstring(L, -1))
 	{
 		SDL_ShowSimpleMessageBox(
-			SDL_MESSAGEBOX_ERROR, 
-			"Error", 
-			lua_tostring(L, -1), 
+			SDL_MESSAGEBOX_WARNING, 
+			"Warning", 
+			"Lua variable is not a string", 
 			NULL
 		);
-		return 0.0;
+		lua_pop(L, 1);
+		return NULL;
 	}
-	lua_getglobal( L, "__getvariable" );  
-	return lua_tonumber(L, -1);
+	
+	const char* val = lua_tostring(L, -1);
+	lua_pop(L, 1);
+	return val;
 }
 	
 int script_getinteger(lua_State* L, const char* variable_name)
@@ -73,7 +130,21 @@ int script_getinteger(lua_State* L, const char* variable_name)
 		return 0;
 	}
 	lua_getglobal( L, "__getvariable" );  
-	return lua_tointeger(L, -1);
+	if(!lua_isinteger(L, -1))
+	{
+		SDL_ShowSimpleMessageBox(
+			SDL_MESSAGEBOX_WARNING, 
+			"Warning", 
+			"Lua variable is not an integer", 
+			NULL
+		);
+		lua_pop(L, 1);
+		return 0;
+	}
+	
+	int val = lua_tointeger(L, -1);
+	lua_pop(L, 1);
+	return val;
 }
 	
 int script_getboolean(lua_State* L, const char* variable_name)
@@ -94,7 +165,21 @@ int script_getboolean(lua_State* L, const char* variable_name)
 		return 0;
 	}
 	lua_getglobal( L, "__getvariable" );  
-	return lua_toboolean(L, -1);
+	if(!lua_isnumber(L, -1))
+	{
+		SDL_ShowSimpleMessageBox(
+			SDL_MESSAGEBOX_WARNING, 
+			"Warning", 
+			"Lua variable is not a boolean", 
+			NULL
+		);
+		lua_pop(L, 1);
+		return 0;
+	}
+	
+	int val = lua_toboolean(L, -1);
+	lua_pop(L, 1);
+	return val;
 }
 
 int	script_getnil(lua_State* L, const char* variable_name)
@@ -117,9 +202,11 @@ int	script_getnil(lua_State* L, const char* variable_name)
 	lua_getglobal( L, "__getvariable" );  
 	if(lua_isnil(L, -1))
 	{
+		lua_pop(L, 1);
 		return 1;
 	}
 	
+	lua_pop(L, 1);
 	return 0;
 }
 	
@@ -181,9 +268,11 @@ int script_callfunction(lua_State* L, const char* variable_name,
 			lua_tostring(L, -1), 
 			NULL
 		);
+		lua_pop(L, 1);
 		return 1;
 	}
 	
+	lua_pop(L, 1);
 	return 0;
 }
 
