@@ -16,7 +16,7 @@ player.graphics_component.file = '../../res/images/TP_1.0_SpriteSheet.png'
 --The time that each frame shows in milliseconds
 player.graphics_component.delay = 1000
 
---Specify sprites in sprite sheey
+--Specify sprites in sprite sheet
 player.graphics_component.frames = {
 	frame1 = {
 		--X and Y position in sprite sheet
