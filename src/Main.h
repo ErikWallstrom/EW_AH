@@ -1,6 +1,7 @@
 //EW_AH
 #include "Array.h"
 #include "Script.h"
+#include "Entity.h"
 #include "Libraries.h"
 
 //Standard library
@@ -32,21 +33,6 @@ typedef struct
 	Array* entities;
 	
 } Program;
-
-typedef struct
-{
-	const char* name;
-	Array* components;
-	
-} Entity;
-
-typedef struct
-{
-	SDL_Texture* texture;
-	double x, y;
-	int width, height;
-	
-} Graphics_Component;
 
 int process_events(Program* program);
 int render(Program* program);

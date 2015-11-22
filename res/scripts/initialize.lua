@@ -6,7 +6,7 @@ window = {
 	height = 600
 }
 
-scale = 6.0
+scale = 6
 player = {
 	graphics_component = {
 		file = '../../res/images/TB1.0.png',
