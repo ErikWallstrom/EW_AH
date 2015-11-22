@@ -1,7 +1,7 @@
 #include "Entity.h"
-
-#include "Array.h"
 #include "Script.h"
+
+#include "../include/Lua_5.3/lauxlib.h"
 
 #include <string.h>
 #include <stdlib.h>
@@ -41,7 +41,7 @@ Entity* entity_create(lua_State* script, SDL_Renderer* renderer, const char* nam
 		);
 		return NULL;
 	}
-	strcpy(entity->name, name);
+	sprintf(entity->name, "%s", name);
 	
 	char* buffer = malloc(strlen(name) + sizeof(".graphics_component"));
 	if(buffer == NULL)
@@ -56,8 +56,7 @@ Entity* entity_create(lua_State* script, SDL_Renderer* renderer, const char* nam
 		return NULL;
 	}
 		
-	strcpy(buffer, name);
-	strcpy(buffer + strlen(name), ".graphics_component");
+	sprintf(buffer, "%s.graphics_component", name);
 	if(!script_getnil(script, buffer))
 	{
 		Graphics_Component* gcomponent = malloc(sizeof(Graphics_Component));
@@ -74,7 +73,7 @@ Entity* entity_create(lua_State* script, SDL_Renderer* renderer, const char* nam
 			return NULL;
 		}
 		
-		strcpy(buffer + strlen(name) + sizeof(".graphics_component") - 1, ".file");
+		sprintf(buffer, "%s.graphics_component.file", name);
 		gcomponent->texture = IMG_LoadTexture(renderer, script_getstring(script, buffer));
 		if(gcomponent->texture == NULL)
 		{
@@ -88,14 +87,84 @@ Entity* entity_create(lua_State* script, SDL_Renderer* renderer, const char* nam
 			return NULL;
 		}
 		
-		strcpy(buffer + strlen(name) + sizeof(".graphics_component") - 1, ".x");
+		sprintf(buffer, "%s.graphics_component.scale", name);
+		int scale = script_getnumber(script, buffer);
+		sprintf(buffer, "%s.graphics_component.x", name);
 		gcomponent->x = script_getnumber(script, buffer);
-		strcpy(buffer + strlen(name) + sizeof(".graphics_component") - 1, ".y");
+		sprintf(buffer, "%s.graphics_component.y", name);
 		gcomponent->y = script_getnumber(script, buffer);
-		strcpy(buffer + strlen(name) + sizeof(".graphics_component") - 1, ".width");
-		gcomponent->width = script_getinteger(script, buffer);
-		strcpy(buffer + strlen(name) + sizeof(".graphics_component") - 1, ".height");
-		gcomponent->height = script_getinteger(script, buffer);
+		sprintf(buffer, "%s.graphics_component.width", name);
+		gcomponent->width = script_getinteger(script, buffer) * scale;
+		sprintf(buffer, "%s.graphics_component.height", name);
+		gcomponent->height = script_getinteger(script, buffer) * scale;
+		
+		sprintf(buffer, "%s.graphics_component.delay", name);
+		if(!script_getnil(script, buffer))
+		{
+			gcomponent->animation_delay = script_getinteger(script, buffer);
+			gcomponent->animation_selected = 0;
+			gcomponent->animation_time = SDL_GetTicks();
+			gcomponent->images = array_create();
+			
+			sprintf(buffer, "%s.graphics_component.frames", name);
+			if(!script_getnil(script, buffer))
+			{
+				buffer = realloc(
+					buffer, 
+					strlen(buffer) + sizeof(".graphics_component.frames.frame99")
+				);
+				
+				for(int i = 0; 1; i++)
+				{
+					sprintf(buffer, "%s.graphics_component.frames.frame%i", name, i + 1);
+					if(!script_getnil(script, buffer))
+					{
+						sprintf(buffer, "%s.graphics_component.frames.frame%i.x", name, i + 1);
+						int x = script_getinteger(script, buffer);
+						sprintf(buffer, "%s.graphics_component.frames.frame%i.y", name, i + 1);
+						int y = script_getinteger(script, buffer);
+						
+						SDL_Rect* rect = malloc(sizeof(SDL_Rect));
+						if(rect == NULL)
+						{
+							SDL_ShowSimpleMessageBox(
+								SDL_MESSAGEBOX_ERROR, 
+								"Error", 
+								"Memory allocation error (entity_create)", 
+								NULL
+							);
+							
+							return NULL;
+						}
+						rect->x = x;
+						rect->y = y;
+						rect->w = gcomponent->width / scale;
+						rect->h = gcomponent->height / scale;
+						
+						array_push(gcomponent->images, array_getlength(gcomponent->images), rect);
+					}
+					else
+					{
+						break;
+					}
+				}
+			}
+			else
+			{
+				gcomponent->animation_delay = 0;
+				gcomponent->animation_selected = 0;
+				gcomponent->animation_time = 0;
+				gcomponent->images = NULL;
+			}
+		}
+		else
+		{
+			gcomponent->animation_delay = 0;
+			gcomponent->animation_selected = 0;
+			gcomponent->animation_time = 0;
+			gcomponent->images = NULL;
+		}
+		
 		
 		Component_Type* type = malloc(sizeof(Component_Type));
 		if(type == NULL)
@@ -116,6 +185,7 @@ Entity* entity_create(lua_State* script, SDL_Renderer* renderer, const char* nam
 		array_push(entity->components, 0, gcomponent);
 	}
 	
+	free(buffer);
 	return entity;
 }
 
