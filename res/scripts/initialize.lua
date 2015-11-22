@@ -1,31 +1,42 @@
 print('Lua Initialized')
 
+--Set window properties
 window = {
 	title = 'Test Window',
 	width = 800,
 	height = 600
 }
 
-player = {
-	graphics_component = {
-		file = '../../res/images/TB1.0.png', 	--Sprite sheet file path
-		delay = 1000,							--1000 milliseconds delay between frames
-		frames = {
-			frame1 = {
-				x = 0,							--X position in sprite sheet
-				y = 0							--Y position in sprite sheet
-			},
-			frame2 = {
-				x = 7,
-				y = 0
-			}
-		},
-		
-		scale = 6,
-		width = 7,
-		height = 16,
-		
-		x = 350.0,								--X position of player
-		y =	250.0								--Y position of player
-	}
+--Create a player entity with a graphics component
+player = { graphics_component = {} }
+
+--File path of sprite sheet
+player.graphics_component.file = '../../res/images/TP_1.0_SpriteSheet.png'
+
+--The time that each frame shows in milliseconds
+player.graphics_component.delay = 1000
+
+--Specify sprites in sprite sheey
+player.graphics_component.frames = {
+	frame1 = {
+		--X and Y position in sprite sheet
+		x = 9,
+		y = 0
+	},
+	frame2 = {
+		x = 18,
+		y = 0
+	},
+	--frame3...
 }
+
+--X and Y position in window (in pixels)
+player.graphics_component.x = 350.0
+player.graphics_component.y = 250.0
+
+--The scale the sprite shown in window is
+player.graphics_component.scale = 6
+
+--Width and height of each sprite in sprite sheet
+player.graphics_component.width = 9
+player.graphics_component.height = 18

@@ -20,10 +20,10 @@
 		double x, y;
 		int width, height;
 		
+		Array* images;
 		int animation_selected;
 		int animation_delay;
-		int animation_time;
-		Array* images;
+		unsigned int animation_time;
 	};
 	
 	Entity* entity_create		(lua_State* script, SDL_Renderer* renderer, const char* name);

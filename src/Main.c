@@ -73,8 +73,27 @@ int render(Program* program)
 			 (int)gcomponent->x, (int)gcomponent->y,
 			 gcomponent->width, gcomponent->height
 		};
-
-		SDL_RenderCopy(program->renderer, gcomponent->texture, NULL, &dRect);
+		
+		if(gcomponent->images != NULL)
+		{
+			if(SDL_GetTicks() - gcomponent->animation_delay > gcomponent->animation_time)
+			{
+				gcomponent->animation_selected++;
+				if(gcomponent->animation_selected > array_getlength(gcomponent->images) - 1)
+				{
+					gcomponent->animation_selected = 0;
+				}
+				
+				gcomponent->animation_time = SDL_GetTicks();
+			}
+			
+			SDL_Rect* sRect = array_getvalue(gcomponent->images, gcomponent->animation_selected);
+			SDL_RenderCopy(program->renderer, gcomponent->texture, sRect, &dRect);
+		}
+		else
+		{
+			SDL_RenderCopy(program->renderer, gcomponent->texture, NULL, &dRect);
+		}
 	}
 	
 	SDL_RenderPresent(program->renderer);
