@@ -76,7 +76,7 @@ int render(Program* program)
 		
 		if(gcomponent->images != NULL)
 		{
-			if(SDL_GetTicks() - gcomponent->animation_delay > gcomponent->animation_time)
+			if(SDL_GetTicks() - gcomponent->animation_delay > gcomponent->animation_time && SDL_GetTicks() > 1000)
 			{
 				gcomponent->animation_selected++;
 				if(gcomponent->animation_selected > array_getlength(gcomponent->images) - 1)
