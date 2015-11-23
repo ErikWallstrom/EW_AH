@@ -39,7 +39,7 @@ int initialize_libraries(void)
 		);
 		return 1;
 	}
-	if(!Mix_Init(MIX_INIT_MP3))
+	/*if(!Mix_Init(MIX_INIT_MP3))
 	{
 		SDL_ShowSimpleMessageBox(
 			SDL_MESSAGEBOX_ERROR, 
@@ -48,7 +48,7 @@ int initialize_libraries(void)
 			NULL
 		);
 		return 1;
-	}
+	}*/
 	if(!IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG))
 	{
 		SDL_ShowSimpleMessageBox(
@@ -66,7 +66,7 @@ int initialize_libraries(void)
 void terminate_libraries(void)
 {
 	IMG_Quit();
-	Mix_Quit();
+	//Mix_Quit();
 	SDLNet_Quit();
 	TTF_Quit();
 	SDL_Quit();
