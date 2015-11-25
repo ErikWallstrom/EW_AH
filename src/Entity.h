@@ -17,7 +17,7 @@
 	struct Graphics_Component
 	{
 		SDL_Texture* texture;
-		double x, y;
+		double x, y, scale;
 		int width, height;
 		
 		Array* images;

@@ -61,14 +61,24 @@ int process_events(Program* program)
 
 int render(Program* program)
 {
-	SDL_SetRenderDrawColor(program->renderer, 0, 0, 255, 255);
+	SDL_SetRenderDrawColor(program->renderer, 0, 255, 0, 255);
 	SDL_RenderClear(program->renderer);
 	
 	for(int i = 0; i < array_getlength(program->entities); i++)
 	{
 		Entity* entity = array_getvalue(program->entities, i);
+		if(entity == NULL)
+		{
+			array_pop(program->entities, i);
+			continue;
+		}
 		Graphics_Component* gcomponent = entity_getcomponent(entity, GRAPHICS);
-		 
+		if(gcomponent == NULL)
+		{
+			array_pop(program->entities, i);
+			continue;
+		}
+
 		SDL_Rect dRect = {
 			 (int)gcomponent->x, (int)gcomponent->y,
 			 gcomponent->width, gcomponent->height
@@ -78,7 +88,7 @@ int render(Program* program)
 		{
 			if(SDL_GetTicks() - gcomponent->animation_delay > gcomponent->animation_time && SDL_GetTicks() > 1000)
 			{
-				gcomponent->animation_selected++;
+				gcomponent->animation_selected++; 
 				if(gcomponent->animation_selected > array_getlength(gcomponent->images) - 1)
 				{
 					gcomponent->animation_selected = 0;
