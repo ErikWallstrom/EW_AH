@@ -21,11 +21,38 @@ player.graphics_component.frames = {
 	frame1 = {
 		--X and Y position in sprite sheet
 		x = 0,
-		y = 18
+		y = 0
 	},
 	frame2 = {
-		x = 0,
+		x = 11,
 		y = 0
+	},
+	frame3 = {
+		--X and Y position in sprite sheet
+		x = 22,
+		y = 0
+	},
+	frame4 = {
+		x = 33,
+		y = 0
+	},
+	frame5 = {
+		--X and Y position in sprite sheet
+		x = 0,
+		y = 18
+	},
+	frame6 = {
+		x = 11,
+		y = 18
+	},
+	frame7 = {
+		--X and Y position in sprite sheet
+		x = 22,
+		y = 18
+	},
+	frame8 = {
+		x = 33,
+		y = 18
 	},
 	--frame3...
 }
