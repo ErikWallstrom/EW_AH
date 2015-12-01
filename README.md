@@ -1,2 +1,5 @@
 # EW_AH
-(game?) project
+Indie game development project
+
+Platform RPG
+Members: Erik, Alexander
