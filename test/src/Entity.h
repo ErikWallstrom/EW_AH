@@ -4,8 +4,7 @@
 	typedef struct Entity Entity;
 	typedef enum
 	{
-		COMPONENT_IMAGE,
-		COMPONENT_TEXT,
+		COMPONENT_GRAPHICS,
 		
 	} Component_Type;
 	

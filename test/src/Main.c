@@ -11,44 +11,44 @@ Entity* load_entity(lua_State* L, const char* name, SDL_Renderer* renderer)
 		int stack_pos_image_component = lua_gettop(L);
 		if(lua_istable(L, stack_pos_image_component))
 		{
-			Image_Component* icomponent = malloc(sizeof(Image_Component));
-			if(icomponent == NULL)
+			Image_Component* gcomponent = malloc(sizeof(Image_Component));
+			if(gcomponent == NULL)
 			{
 				error_popup("Memory allocation failed (load_entity)");
 				return NULL;
 			}
 			
 			lua_getfield(L, stack_pos_image_component, "file");
-			icomponent->texture = IMG_LoadTexture(renderer, luaL_checkstring(L, -1));
+			gcomponent->texture = IMG_LoadTexture(renderer, luaL_checkstring(L, -1));
 			lua_pop(L, 1);
 			
 			lua_getfield(L, stack_pos_image_component, "x");
-			icomponent->x = lua_tonumber(L,  -1);
+			gcomponent->x = lua_tonumber(L,  -1);
 			lua_pop(L, 1);
 			
 			lua_getfield(L, stack_pos_image_component, "y");
-			icomponent->y = lua_tonumber(L,  -1);
+			gcomponent->y = lua_tonumber(L,  -1);
 			lua_pop(L, 1);
 			
 			lua_getfield(L, stack_pos_image_component, "scale");
-			icomponent->scale = lua_tonumber(L,  -1);
+			gcomponent->scale = lua_tonumber(L,  -1);
 			lua_pop(L, 1);
 			
 			lua_getfield(L, stack_pos_image_component, "rotation");
-			icomponent->rotation = lua_tonumber(L,  -1);
+			gcomponent->rotation = lua_tonumber(L,  -1);
 			lua_pop(L, 1);
 			
 			lua_getfield(L, stack_pos_image_component, "width");
-			icomponent->width = lua_tointeger(L,  -1);
+			gcomponent->width = lua_tointeger(L,  -1);
 			lua_pop(L, 1);
 			
 			lua_getfield(L, stack_pos_image_component, "height");
-			icomponent->height = lua_tointeger(L,  -1);
+			gcomponent->height = lua_tointeger(L,  -1);
 			lua_pop(L, 1);
 			
-			icomponent->animation_time = SDL_GetTicks();
-			icomponent->animations = array_create();
-			icomponent->animation_selected = 0;
+			gcomponent->animation_time = SDL_GetTicks();
+			gcomponent->animations = array_create();
+			gcomponent->animation_selected = 0;
 			
 			lua_getfield(L, stack_pos_image_component, "animations");
 			int stack_pos_animation_table = lua_gettop(L);
@@ -89,8 +89,8 @@ Entity* load_entity(lua_State* L, const char* name, SDL_Renderer* renderer)
 								return NULL;
 							}
 								
-							s_rect->w = icomponent->width;
-							s_rect->h = icomponent->height;
+							s_rect->w = gcomponent->width;
+							s_rect->h = gcomponent->height;
 							s_rect->x = (lua_tointeger(L, -1) - 1) * s_rect->w; 
 							lua_pop(L, 1);
 								
@@ -102,7 +102,7 @@ Entity* load_entity(lua_State* L, const char* name, SDL_Renderer* renderer)
 							array_push(animation->s_rects, array_getlength(animation->s_rects), s_rect);
 						}
 						
-						array_push(icomponent->animations, 0, animation);
+						array_push(gcomponent->animations, 0, animation);
 					}
 					lua_pop(L, 1);
 				}
@@ -129,11 +129,11 @@ Entity* load_entity(lua_State* L, const char* name, SDL_Renderer* renderer)
 				
 				s_rect->x = 0;
 				s_rect->y = 0;
-				s_rect->w = icomponent->width;
-				s_rect->h = icomponent->height;
+				s_rect->w = gcomponent->width;
+				s_rect->h = gcomponent->height;
 				
 				array_push(animation->s_rects, 0, s_rect);
-				array_push(icomponent->animations, 0, animation);
+				array_push(gcomponent->animations, 0, animation);
 			}
 			lua_pop(L, 1);
 		}
@@ -177,11 +177,9 @@ int main(void)
 	};
 
 	Entity* player = entity_create("player");
-	entity_addcomponent(player, COMPONENT_IMAGE, icomponent_create(program.renderer, "../../res/images/TP_1.0_SpriteSheet.png", 250.0, 250.0, 32, 32, 6.0, 0.0));
-	if(player == NULL)
-	{
-		error_popup("ERRR");
-	}
+	Graphics_Component* gcomponent = gcomponent_create(program.renderer, "../../res/images/TP_1.0_SpriteSheet.png", 250.0, 250.0, 32, 32, 6.0, 0.0);
+	gcomponent_addanimation(gcomponent, 2, (SDL_Rect[]){{.x = 2, .y = 4}, {.x = 4, .y = 5}}, 1000);
+	entity_addcomponent(player, COMPONENT_GRAPHICS, gcomponent);
 
 	array_push(program.entities, 0, player);
 
@@ -225,16 +223,10 @@ int render(Program* program)
 	for(int i = 0; i < array_getlength(program->entities); i++)
 	{
 		Entity* entity = array_getvalue(program->entities, i);
-		Image_Component* icomponent = entity_getcomponent(entity, COMPONENT_IMAGE);
-		if(icomponent != NULL)
+		Graphics_Component* gcomponent = entity_getcomponent(entity, COMPONENT_GRAPHICS);
+		if(gcomponent != NULL)
 		{
-			icomponent_render(icomponent, program->renderer);
-		}
-		
-		Text_Component* tcomponent = entity_getcomponent(entity, COMPONENT_TEXT);
-		if(tcomponent != NULL)
-		{
-			printf("text indeed\n");
+			gcomponent_render(gcomponent, program->renderer);
 		}
 	}
 	

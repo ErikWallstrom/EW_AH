@@ -9,15 +9,17 @@
 #include <math.h>
 #include <stdlib.h>
 
-struct Animation
+typedef struct
 {
-	Array* s_rects;
-	int frame;
+	SDL_Rect* s_rects;
+	int total_frames;
+	int frame_selected;
 	unsigned int time;
 	unsigned int delay;
-};
+	
+} Animation;
 
-struct Image_Component
+struct Graphics_Component
 {
 	SDL_Texture* texture;
 	int width, height;
@@ -27,88 +29,111 @@ struct Image_Component
 	int animation_selected;
 };
 
-struct Text_Component
-{
-	SDL_Texture* texture;
-	TTF_Font* font;
-	char* text;
-	int width, height;
-	double x, y, rotation, scale;
-		
-	Array* animations;
-	int animation_selected;	
-};
-
-Image_Component* icomponent_create(
+Graphics_Component* gcomponent_create(
 	SDL_Renderer* renderer, const char* file, 
 	double x, double y, 
 	int width, int height,
 	double scale, double rotation					   
 )
 {
-	Image_Component* icomponent = malloc(sizeof(Image_Component));
-	if(icomponent == NULL)
+	Graphics_Component* gcomponent = malloc(sizeof(Graphics_Component));
+	if(gcomponent == NULL)
 	{
 		error_popup("Memory allocation error");
 		return NULL;
 	}
 	
-	icomponent->texture = IMG_LoadTexture(renderer, file);
-	if(icomponent->texture == NULL)
+	gcomponent->texture = IMG_LoadTexture(renderer, file);
+	if(gcomponent->texture == NULL)
 	{
 		error_popup(IMG_GetError());
 		return NULL;
 	}
 	
-	icomponent->x = x;
-	icomponent->y = y;
-	icomponent->scale = scale;
-	icomponent->width = width;
-	icomponent->height = height;
-	icomponent->rotation = rotation;
-	icomponent->animations = NULL;
-	icomponent->animation_selected = 0;
+	gcomponent->x = x;
+	gcomponent->y = y;
+	gcomponent->scale = scale;
+	gcomponent->width = width;
+	gcomponent->height = height;
+	gcomponent->rotation = rotation;
+	gcomponent->animation_selected = 0;
+	gcomponent->animations = array_create();
 	
-	return icomponent;
+	return gcomponent;
 }
 
-void icomponent_destroy(Image_Component** icomponent)
+void gcomponent_destroy(Graphics_Component** gcomponent)
 {
-	if(icomponent != NULL)
+	if(gcomponent != NULL)
 	{
-		if((*icomponent) != NULL)
+		if((*gcomponent) != NULL)
 		{
-			if((*icomponent)->texture != NULL)
+			if((*gcomponent)->texture != NULL)
 			{
-				SDL_DestroyTexture((*icomponent)->texture);
+				SDL_DestroyTexture((*gcomponent)->texture);
 			}
 			
-			if((*icomponent)->animations != NULL)
+			if((*gcomponent)->animations != NULL)
 			{
 				//TODO: Clean up memory in array
-				array_destroy(&(*icomponent)->animations);
+				array_destroy(&(*gcomponent)->animations);
 			}
 			
-			free((*icomponent));
+			free((*gcomponent));
 		}
 	}
 	
-	(*icomponent) = NULL;
+	(*gcomponent) = NULL;
 }
 
-int icomponent_render(Image_Component* icomponent, SDL_Renderer* renderer)
+int gcomponent_render(Graphics_Component* gcomponent, SDL_Renderer* renderer)
 {
-	if(icomponent != NULL && renderer != NULL)
+	if(gcomponent != NULL && renderer != NULL)
 	{
 		//TODO: Animation
 		SDL_Rect d_rect = {
-			(int)round(icomponent->x),
-			(int)round(icomponent->y),
-			icomponent->width,
-			icomponent->height
+			(int)round(gcomponent->x),
+			(int)round(gcomponent->y),
+			gcomponent->width,
+			gcomponent->height
 		};
-		SDL_RenderCopyEx(renderer, icomponent->texture, NULL, &d_rect, icomponent->rotation, NULL, SDL_FLIP_NONE);
+		SDL_RenderCopyEx(renderer, gcomponent->texture, NULL, &d_rect, gcomponent->rotation, NULL, SDL_FLIP_NONE);
 	}
 	
-	return 0;
+	return 1;
 }
+
+int gcomponent_addanimation(Graphics_Component* gcomponent, int total_frames, SDL_Rect* frames, unsigned int delay)
+{
+	Animation* animation = malloc(sizeof(Animation));
+	if(animation == NULL)
+	{
+		error_popup("Memory allocation error");
+		return 0;
+	}
+	
+	animation->total_frames = total_frames;
+	animation->frame_selected = 0;
+	animation->time = SDL_GetTicks();
+	animation->delay = delay;
+	
+	animation->s_rects = malloc(sizeof(SDL_Rect) * total_frames);
+	if(animation->s_rects == NULL)
+	{
+		error_popup("Memory allocation error");
+		return 0;
+	}
+	
+	for(int i = 0; i < total_frames; i++)
+	{
+		animation->s_rects[i].x = frames[i].x;
+		animation->s_rects[i].y = frames[i].y;
+		animation->s_rects[i].w = gcomponent->width;
+		animation->s_rects[i].h = gcomponent->height;
+	}
+
+	array_push(gcomponent->animations, array_getlength(gcomponent->animations), animation);
+	return 1;
+}
+
+//int gcomponent_removeanimation(...)
