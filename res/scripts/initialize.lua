@@ -61,7 +61,7 @@ player.graphics_component.frames = {
 player.graphics_component.scale = 6
 
 --Width and height of each sprite in sprite sheet
-player.graphics_component.width = 9
+player.graphics_component.width = 11
 player.graphics_component.height = 18
 
 --X and Y position in window (in pixels)
