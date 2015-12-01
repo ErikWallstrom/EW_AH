@@ -57,42 +57,47 @@ Entity* entity_create(const char* name)
 	return entity;
 }
 
-void entity_destroy(Entity* entity)
+void entity_destroy(Entity** entity)
 {
 	if(entity != NULL)
 	{
-		if(entity->name != NULL)
+		if((*entity) != NULL)
 		{
-			free(entity->name);
-		}
-		
-		if(entity->components != NULL)
-		{
-			array_destroy(entity->components);
-		}
-		
-		if(entity->component_types != NULL)
-		{
-			for(int i = 0; i < array_getlength(entity->component_types); i++)
+			if((*entity)->name != NULL)
 			{
-				Component_Type* component_type = array_getvalue(entity->component_types, i);
-				if(component_type != NULL)
-				{
-					free(component_type);
-				}
+				free((*entity)->name);
 			}
-			array_destroy(entity->component_types);
+			
+			if((*entity)->components != NULL)
+			{
+				array_destroy(&(*entity)->components);
+			}
+			
+			if((*entity)->component_types != NULL)
+			{
+				for(int i = 0; i < array_getlength((*entity)->component_types); i++)
+				{
+					Component_Type* component_type = array_getvalue((*entity)->component_types, i);
+					if(component_type != NULL)
+					{
+						free(component_type);
+					}
+				}
+				array_destroy(&(*entity)->component_types);
+			}
+			
+			free((*entity));
 		}
-		
-		free(entity);
 	}
+	
+	(*entity) = NULL;
 }
 
 void* entity_getcomponent(Entity* entity, Component_Type type)
 {
 	if(entity != NULL)
 	{
-		for(int i = 0; array_getlength(entity->components); i++)
+		for(int i = 0; i < array_getlength(entity->components); i++)
 		{
 			Component_Type* ctype = array_getvalue(entity->component_types, i);
 			if(*ctype == type)

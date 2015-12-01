@@ -31,17 +31,22 @@ Array* array_create(void)
 	return array;
 }
 
-void array_destroy(Array* array)
+void array_destroy(Array** array)
 {
 	if (array != NULL)
 	{
-		if(array->value != NULL)
+		if((*array) != NULL)
 		{
-			free(array->value);
+			if((*array)->value != NULL)
+			{
+				free((*array)->value);
+			}
+			
+			free((*array));
 		}
-		
-		free(array);
 	}
+	
+	(*array) = NULL;
 }
 
 int array_pop(Array* array, int index)

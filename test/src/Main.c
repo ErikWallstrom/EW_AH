@@ -1,5 +1,5 @@
 #include "Main.h"
-
+/*
 Entity* load_entity(lua_State* L, const char* name, SDL_Renderer* renderer)
 {
 	Entity* entity = entity_create(name);
@@ -150,7 +150,7 @@ Entity* load_entity(lua_State* L, const char* name, SDL_Renderer* renderer)
 	
 	return entity;
 }
-
+*/
 int main(void)
 {
 	if(!initialize_libraries())
@@ -175,18 +175,16 @@ int main(void)
 		SDL_GetKeyboardState(NULL),
 		array_create(),
 	};
-	printf("Error!\n");
-	Entity* player = load_entity(program.script, "player", program.renderer);
-	printf("Error!\n");
+
+	Entity* player = entity_create("player");
+	entity_addcomponent(player, COMPONENT_IMAGE, icomponent_create(program.renderer, "../../res/images/TP_1.0_SpriteSheet.png", 250.0, 250.0, 32, 32, 6.0, 0.0));
 	if(player == NULL)
 	{
-		printf("Error!\n");
 		error_popup("ERRR");
 	}
-	printf("Error!\n");
+
 	array_push(program.entities, 0, player);
-	
-	printf("Error!\n");
+
 	int done = 0;
 	while(!done)
 	{
@@ -197,7 +195,7 @@ int main(void)
 	lua_close(program.script);
 	SDL_DestroyWindow(program.window);
 	SDL_DestroyRenderer(program.renderer);
-	array_destroy(program.entities);
+	array_destroy(&program.entities);
 	
 	terminate_libraries();
 	return 0;
@@ -227,38 +225,16 @@ int render(Program* program)
 	for(int i = 0; i < array_getlength(program->entities); i++)
 	{
 		Entity* entity = array_getvalue(program->entities, i);
-		Image_Component* icomponent = entity_getcomponent(entity, IMAGE);
+		Image_Component* icomponent = entity_getcomponent(entity, COMPONENT_IMAGE);
 		if(icomponent != NULL)
 		{
-			SDL_Rect d_rect = {
-				(int)round(icomponent->x), 
-				(int)round(icomponent->y),
-				icomponent->width * icomponent->scale,
-				icomponent->height * icomponent->scale
-			};
-			
-			Animation* animation = array_getvalue(
-				icomponent->animations, 
-				icomponent->animation_selected
-			);
-			
-			if(SDL_GetTicks() - icomponent->animation_time > animation->delay)
-			{
-				animation->frame++;
-				if(animation->frame > array_getlength(animation->s_rects) - 1)
-				{
-					animation->frame = 0;
-				}
-			}
-			
-			SDL_Rect* s_rect = array_getvalue(animation->s_rects, animation->frame);
-			SDL_RenderCopy(program->renderer, icomponent->texture, s_rect, &d_rect);
+			icomponent_render(icomponent, program->renderer);
 		}
 		
-		Text_Component* tcomponent = entity_getcomponent(entity, TEXT);
+		Text_Component* tcomponent = entity_getcomponent(entity, COMPONENT_TEXT);
 		if(tcomponent != NULL)
 		{
-			
+			printf("text indeed\n");
 		}
 	}
 	
