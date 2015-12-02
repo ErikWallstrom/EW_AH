@@ -17,17 +17,33 @@ player = {
 		
 		animations = {
 			walk_right = {
-				{ 1, 1 },
+				delay = 1000,
 				{ 2, 1 },
-				{ 3, 1 },
-				delay = 1000
+				{ 3, 1 }
 			},
 			
 			walk_left = {
 				delay = 1000,
-				{ 1, 2 },
-				{ 2, 2 }
+				{ 2, 2 },
+				{ 3, 2 }
 			},
 		}
+	},
+	event_component = {
+		key_down = function(self, key)
+			print('Key was pressed')
+		end,
+		
+		key_up = function(self, key)
+			print('Key was released')
+		end,
+		
+		left_click = function(self, key)
+			
+		end,
+		
+		right_click = function(self, key)
+			
+		end
 	}
 }

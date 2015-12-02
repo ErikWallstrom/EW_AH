@@ -153,10 +153,18 @@ int main(void)
 		done = process_events(&program);
 	}
 
+	for(int i = 0; i < array_getlength(program.entities); i++)
+	{
+		Entity* entity = array_getvalue(program.entities, i);
+		Graphics_Component* gcomponent = entity_getcomponent(entity, COMPONENT_GRAPHICS);
+		gcomponent_destroy(&gcomponent);
+		entity_destroy(&entity);
+	}
+
 	lua_close(program.script);
+	array_destroy(&program.entities);
 	SDL_DestroyWindow(program.window);
 	SDL_DestroyRenderer(program.renderer);
-	array_destroy(&program.entities);
 	
 	terminate_libraries();
 	return 0;
