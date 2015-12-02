@@ -17,7 +17,7 @@ int initialize_libraries(void)
 			SDL_GetError(), 
 			NULL
 		);
-		return 1;
+		return 0;
 	}
 	if(TTF_Init())
 	{
@@ -27,7 +27,7 @@ int initialize_libraries(void)
 			TTF_GetError(), 
 			NULL
 		);
-		return 1;
+		return 0;
 	}
 	if(SDLNet_Init())
 	{
@@ -37,9 +37,9 @@ int initialize_libraries(void)
 			SDLNet_GetError(), 
 			NULL
 		);
-		return 1;
+		return 0;
 	}
-	/*if(!Mix_Init(MIX_INIT_MP3))
+	/*if(!Mix_Init(MIX_INIT_MP3)) //Fucks linux up
 	{
 		SDL_ShowSimpleMessageBox(
 			SDL_MESSAGEBOX_ERROR, 
@@ -47,7 +47,7 @@ int initialize_libraries(void)
 			Mix_GetError(), 
 			NULL
 		);
-		return 1;
+		return 0;
 	}*/
 	if(!IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG))
 	{
@@ -57,10 +57,10 @@ int initialize_libraries(void)
 			IMG_GetError(), 
 			NULL
 		);
-		return 1;
+		return 0;
 	}
 	
-	return 0;
+	return 1;
 }
 
 void terminate_libraries(void)

@@ -9,7 +9,6 @@
 	int 		script_getinteger	(lua_State* L, const char* variable_name);
 	int 		script_getboolean	(lua_State* L, const char* variable_name);
 	int			script_getnil		(lua_State* L, const char* variable_name);
-	int 		script_gettostack	(lua_State* L, const char* variable_name);
 	int 		script_callfunction (lua_State* L, const char* function_name,
 									 int num_returns, const char* parameters, ...);
 

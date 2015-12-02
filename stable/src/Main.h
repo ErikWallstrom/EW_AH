@@ -1,10 +1,13 @@
 //EW_AH
 #include "Array.h"
+#include "Error.h"
 #include "Script.h"
 #include "Entity.h"
 #include "Libraries.h"
+#include "Components.h"
 
 //Standard library
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

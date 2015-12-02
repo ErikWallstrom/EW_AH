@@ -11,7 +11,7 @@ player = {
 		x = 350.0,
 		y = 250.0,
 		scale = 6.0,
-		width = 9,
+		width = 11,
 		height = 18,
 		rotation = 0.0,
 		
@@ -19,6 +19,7 @@ player = {
 			walk_right = {
 				{ 1, 1 },
 				{ 2, 1 },
+				{ 3, 1 },
 				delay = 1000
 			},
 			

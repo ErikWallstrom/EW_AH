@@ -1,33 +1,17 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-	#include "../include/SDL2/SDL_image.h"
-	#include "../include/Lua_5.3/lua.h"
-	#include "Array.h"
-
 	typedef struct Entity Entity;
-	typedef struct Graphics_Component Graphics_Component;
-	
 	typedef enum
 	{
-		GRAPHICS
+		COMPONENT_GRAPHICS,
 		
 	} Component_Type;
 	
-	struct Graphics_Component
-	{
-		SDL_Texture* texture;
-		double x, y, scale;
-		int width, height;
-		
-		Array* images;
-		int animation_selected;
-		int animation_delay;
-		unsigned int animation_time;
-	};
-	
-	Entity* entity_create		(lua_State* script, SDL_Renderer* renderer, const char* name);
-	void 	entity_destroy		(Entity* entity);
-	void* 	entity_getcomponent	(Entity* entity, Component_Type component);
+	Entity* entity_create			(const char* name);
+	void 	entity_destroy			(Entity** entity);
+	void* 	entity_getcomponent		(Entity* entity, Component_Type type);
+	int 	entity_addcomponent		(Entity* entity, Component_Type type, void* component);
+	int 	entity_removecomponent	(Entity* entity, Component_Type type);
 
 #endif

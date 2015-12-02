@@ -1,6 +1,6 @@
 #include "Main.h"
 
-Entity* load_script_entity(lua_State* L, const char* name)
+Entity* load_script_entity(lua_State* L, SDL_Renderer* renderer, const char* name)
 {
 	Entity* entity = entity_create(name);
 	lua_getglobal(L, name);
@@ -10,6 +10,39 @@ Entity* load_script_entity(lua_State* L, const char* name)
 		lua_getfield(L, -1, "graphics_component");
 		if(lua_istable(L, -1))
 		{
+			lua_getfield(L, -1, "file");
+			const char* file = lua_tostring(L, -1);
+			lua_pop(L, 1);
+			
+			lua_getfield(L, -1, "rotation");
+			double rotation = lua_tonumber(L, -1);
+			lua_pop(L, 1);
+			
+			lua_getfield(L, -1, "scale");
+			double scale = lua_tonumber(L, -1);
+			lua_pop(L, 1);
+			
+			lua_getfield(L, -1, "width");
+			int width = lua_tointeger(L, -1);
+			lua_pop(L, 1);
+			
+			lua_getfield(L, -1, "height");
+			int height = lua_tointeger(L, -1);
+			lua_pop(L, 1);
+			
+			lua_getfield(L, -1, "x");
+			double x = lua_tonumber(L, -1) - ((double)width / 2.0);
+			lua_pop(L, 1);
+			
+			lua_getfield(L, -1, "y");
+			double y = lua_tonumber(L, -1) - ((double)height / 2.0);
+			lua_pop(L, 1);
+			
+			Graphics_Component* gcomponent = gcomponent_create(
+				renderer, file, x, y, 
+				width, height, scale, rotation
+			);
+			
 			//entity contains graphics_component table
 			lua_getfield(L, -1, "animations");
 			if(lua_istable(L, -1))
@@ -56,25 +89,28 @@ Entity* load_script_entity(lua_State* L, const char* name)
 									error_popup("Memory allocation failed");
 									return NULL;
 								}
-								frames[total_frames - 1].x = lua_tointeger(L, -1);
+								frames[total_frames - 1].x = (lua_tointeger(L, -1) - 1) * width;
 								lua_pop(L, 1);
 								
 								lua_pushnumber(L, 2);
-								frames[total_frames - 1].y = lua_tointeger(L, -1);
+								frames[total_frames - 1].y = (lua_tointeger(L, -1) - 1) * height;
 								lua_gettable(L, -2);
 
-								//frames[total_frames - 1].w
+								frames[total_frames - 1].w = width;
+								frames[total_frames - 1].h = height;
 								lua_pop(L, 1);
 							}
 						}
 						lua_pop(L, 1);
 					}
 					lua_pop(L, 1);
+					gcomponent_addanimation(gcomponent, total_frames, frames, delay);
 					free(frames);
 				}
 				lua_pop(L, 1);
 			}
 			lua_pop(L, 1);
+			entity_addcomponent(entity, COMPONENT_GRAPHICS, gcomponent);
 		}
 		lua_pop(L, 1);
 	}
@@ -108,12 +144,7 @@ int main(void)
 		array_create(),
 	};
 
-	Entity* player = load_script_entity(program.script, "player");
-	Graphics_Component* gcomponent = gcomponent_create(program.renderer, "../../res/images/TP_1.0_SpriteSheet.png", 250.0, 250.0, 11, 18, 6.0, 0.0);
-	gcomponent_addanimation(gcomponent, 2, (SDL_Rect[]){{.x = 11, .y = 0}, {.x = 22, .y = 0}}, 1000);
-	entity_addcomponent(player, COMPONENT_GRAPHICS, gcomponent);
-
-	array_push(program.entities, 0, player);
+	array_push(program.entities, 0, load_script_entity(program.script, program.renderer, "player"));
 
 	int done = 0;
 	while(!done)
