@@ -6,7 +6,7 @@ window = {
 }
 
 player = { 
-	image_component = {
+	graphics_component = {
 		file = '../../res/images/TP_1.0_SpriteSheet.png',
 		x = 350.0,
 		y = 250.0,
@@ -29,9 +29,5 @@ player = {
 			},
 		}
 	},
-	
-	text_component = {
-		
-	}
 }
 
