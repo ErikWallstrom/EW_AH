@@ -17,12 +17,12 @@ player = {
 		
 		animations = {
 			walk_right = {
-				delay = 1000,
 				{ 1, 1 },
-				{ 2, 1 }
+				{ 2, 1 },
+				delay = 1000
 			},
 			
-			walk_right = {
+			walk_left = {
 				delay = 1000,
 				{ 1, 2 },
 				{ 2, 2 }
@@ -30,4 +30,3 @@ player = {
 		}
 	},
 }
-
