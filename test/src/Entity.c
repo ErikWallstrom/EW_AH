@@ -127,7 +127,7 @@ int entity_addcomponent(Entity* entity, Component_Type type, void* component)
 		if(ctype == NULL)
 		{
 			error_popup("Memory allocation failed (entity_addcomponent)");
-			return NULL;
+			return 0;
 		} 
 		*ctype = type;
 		

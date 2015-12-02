@@ -90,17 +90,38 @@ int gcomponent_render(Graphics_Component* gcomponent, SDL_Renderer* renderer)
 {
 	if(gcomponent != NULL && renderer != NULL)
 	{
-		//TODO: Animation
 		SDL_Rect d_rect = {
 			(int)round(gcomponent->x),
 			(int)round(gcomponent->y),
-			gcomponent->width,
-			gcomponent->height
+			(int)round(gcomponent->width * gcomponent->scale),
+			(int)round(gcomponent->height * gcomponent->scale)
 		};
-		SDL_RenderCopyEx(renderer, gcomponent->texture, NULL, &d_rect, gcomponent->rotation, NULL, SDL_FLIP_NONE);
+		
+		if(array_getlength(gcomponent->animations) > 0)
+		{
+			Animation* animation = array_getvalue(gcomponent->animations, gcomponent->animation_selected);
+			SDL_Rect s_rect = animation->s_rects[animation->frame_selected];
+			if(SDL_GetTicks() - animation->time > animation->delay)
+			{
+				animation->time = SDL_GetTicks();
+				animation->frame_selected++;
+				if(animation->frame_selected >= animation->total_frames)
+				{
+					animation->frame_selected = 0;
+				}
+			}
+			
+			SDL_RenderCopyEx(renderer, gcomponent->texture, &s_rect, &d_rect, gcomponent->rotation, NULL, SDL_FLIP_NONE);
+		}
+		else
+		{
+			SDL_RenderCopyEx(renderer, gcomponent->texture, NULL, &d_rect, gcomponent->rotation, NULL, SDL_FLIP_NONE);
+		}
+		
+		return 1;
 	}
 	
-	return 1;
+	return 0;
 }
 
 int gcomponent_addanimation(Graphics_Component* gcomponent, int total_frames, SDL_Rect* frames, unsigned int delay)

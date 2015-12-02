@@ -177,8 +177,8 @@ int main(void)
 	};
 
 	Entity* player = entity_create("player");
-	Graphics_Component* gcomponent = gcomponent_create(program.renderer, "../../res/images/TP_1.0_SpriteSheet.png", 250.0, 250.0, 32, 32, 6.0, 0.0);
-	gcomponent_addanimation(gcomponent, 2, (SDL_Rect[]){{.x = 2, .y = 4}, {.x = 4, .y = 5}}, 1000);
+	Graphics_Component* gcomponent = gcomponent_create(program.renderer, "../../res/images/TP_1.0_SpriteSheet.png", 250.0, 250.0, 11, 18, 6.0, 0.0);
+	gcomponent_addanimation(gcomponent, 2, (SDL_Rect[]){{.x = 0, .y = 0}, {.x = 11, .y = 0}}, 1000);
 	entity_addcomponent(player, COMPONENT_GRAPHICS, gcomponent);
 
 	array_push(program.entities, 0, player);
