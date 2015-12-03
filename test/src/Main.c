@@ -204,7 +204,6 @@ int main(void)
 	array_destroy(&program.entities);
 	SDL_DestroyWindow(program.window);
 	SDL_DestroyRenderer(program.renderer);
-	
 	terminate_libraries();
 	return 0;
 }
@@ -237,7 +236,7 @@ int process_events(Program* program)
 								error_popup(lua_tostring(program->script, -1));
 							}
 							
-							lua_pop(program->script, 3);
+							lua_pop(program->script, 2);
 						}
 					}
 				}
@@ -252,7 +251,15 @@ int process_events(Program* program)
 					{
 						if(ecomponent->key_up)
 						{
+							lua_getglobal(program->script, entity_getname(entity));
+							lua_getfield(program->script, -1, "event_component");
+							lua_getfield(program->script, -1, "key_up");
+							if(lua_pcall(program->script, 0, 0, 0))
+							{
+								error_popup(lua_tostring(program->script, -1));
+							}
 							
+							lua_pop(program->script, 2);
 						}
 					}
 				}
