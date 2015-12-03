@@ -159,3 +159,8 @@ int entity_removecomponent(Entity* entity, Component_Type type)
 	
 	return 0;
 }
+
+const char* entity_getname(Entity* entity)
+{
+	return entity->name;
+}
