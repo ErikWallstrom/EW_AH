@@ -112,6 +112,45 @@ Entity* load_script_entity(lua_State* L, SDL_Renderer* renderer, const char* nam
 			lua_pop(L, 1);
 			entity_addcomponent(entity, COMPONENT_GRAPHICS, gcomponent);
 		}
+		//lua_pop(L, 1); ?!
+		
+		lua_getfield(L, -1, "event_component");
+		if(lua_istable(L, -1))
+		{
+			lua_getfield(L, -1, "key_down");
+			int key_down = 0;
+			if(lua_isfunction(L, -1))
+			{
+				key_down = 1;
+			}
+			lua_pop(L, 1);
+			
+			lua_getfield(L, -1, "key_up");
+			int key_up = 0;
+			if(lua_isfunction(L, -1))
+			{
+				key_up = 1;
+			}
+			lua_pop(L, 1);
+			
+			lua_getfield(L, -1, "left_click");
+			int left_click = 0;
+			if(lua_isfunction(L, -1))
+			{
+				left_click = 1;
+			}
+			lua_pop(L, 1);
+			
+			lua_getfield(L, -1, "right_click");
+			int right_click = 0;
+			if(lua_isfunction(L, -1))
+			{
+				right_click = 1;
+			}
+			lua_pop(L, 1);
+			
+			entity_addcomponent(entity, COMPONENT_EVENT, ecomponent_create(key_down, key_up, left_click, right_click));
+		}
 		lua_pop(L, 1);
 	}
 	lua_pop(L, 1);
@@ -153,11 +192,18 @@ int main(void)
 		done = process_events(&program);
 	}
 
+	for(int i = 0; i < array_getlength(program.entities); i++)
+	{
+		Entity* entity = array_getvalue(program.entities, i);
+		Graphics_Component* gcomponent = entity_getcomponent(entity, COMPONENT_GRAPHICS);
+		gcomponent_destroy(&gcomponent);
+		entity_destroy(&entity);
+	}
+
 	lua_close(program.script);
+	array_destroy(&program.entities);
 	SDL_DestroyWindow(program.window);
 	SDL_DestroyRenderer(program.renderer);
-	array_destroy(&program.entities);
-	
 	terminate_libraries();
 	return 0;
 }
@@ -171,6 +217,52 @@ int process_events(Program* program)
 		{
 			case SDL_QUIT:
 				return 1;
+			break;
+			
+			case SDL_KEYDOWN:
+				for(int i = 0; i < array_getlength(program->entities); i++)
+				{
+					Entity* entity = array_getvalue(program->entities, i);
+					Event_Component* ecomponent = entity_getcomponent(entity, COMPONENT_EVENT);
+					if(ecomponent != NULL)
+					{
+						if(ecomponent->key_down)
+						{
+							lua_getglobal(program->script, entity_getname(entity));
+							lua_getfield(program->script, -1, "event_component");
+							lua_getfield(program->script, -1, "key_down");
+							if(lua_pcall(program->script, 0, 0, 0))
+							{
+								error_popup(lua_tostring(program->script, -1));
+							}
+							
+							lua_pop(program->script, 2);
+						}
+					}
+				}
+			break;
+			
+			case SDL_KEYUP:
+				for(int i = 0; i < array_getlength(program->entities); i++)
+				{
+					Entity* entity = array_getvalue(program->entities, i);
+					Event_Component* ecomponent = entity_getcomponent(entity, COMPONENT_EVENT);
+					if(ecomponent != NULL)
+					{
+						if(ecomponent->key_up)
+						{
+							lua_getglobal(program->script, entity_getname(entity));
+							lua_getfield(program->script, -1, "event_component");
+							lua_getfield(program->script, -1, "key_up");
+							if(lua_pcall(program->script, 0, 0, 0))
+							{
+								error_popup(lua_tostring(program->script, -1));
+							}
+							
+							lua_pop(program->script, 2);
+						}
+					}
+				}
 			break;
 		}
 	}

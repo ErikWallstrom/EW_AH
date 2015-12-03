@@ -157,4 +157,21 @@ int gcomponent_addanimation(Graphics_Component* gcomponent, int total_frames, SD
 	return 1;
 }
 
+Event_Component* ecomponent_create(int key_down, int key_up, int left_click, int right_click)
+{
+	Event_Component* ecomponent = malloc(sizeof(Event_Component));
+	if(ecomponent == NULL)
+	{
+		error_popup("Memory allocation error");
+		return NULL;
+	}
+	
+	ecomponent->key_down = key_down;
+	ecomponent->key_up = key_up;
+	ecomponent->left_click = left_click;
+	ecomponent->right_click = right_click;
+	
+	return ecomponent;
+}
+
 //int gcomponent_removeanimation(...)
