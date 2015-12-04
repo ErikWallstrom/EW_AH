@@ -101,6 +101,7 @@ int gcomponent_render(Graphics_Component* gcomponent, SDL_Renderer* renderer)
 		{
 			Animation* animation = array_getvalue(gcomponent->animations, gcomponent->animation_selected);
 			SDL_Rect s_rect = animation->s_rects[animation->frame_selected];
+			
 			if(SDL_GetTicks() - animation->time > animation->delay)
 			{
 				animation->time = SDL_GetTicks();
@@ -155,6 +156,23 @@ int gcomponent_addanimation(Graphics_Component* gcomponent, int total_frames, SD
 
 	array_push(gcomponent->animations, array_getlength(gcomponent->animations), animation);
 	return 1;
+}
+
+Event_Component* ecomponent_create(int key_down, int key_up, int left_click, int right_click)
+{
+	Event_Component* ecomponent = malloc(sizeof(Event_Component));
+	if(ecomponent == NULL)
+	{
+		error_popup("Memory allocation error");
+		return NULL;
+	}
+	
+	ecomponent->key_down = key_down;
+	ecomponent->key_up = key_up;
+	ecomponent->left_click = left_click;
+	ecomponent->right_click = right_click;
+	
+	return ecomponent;
 }
 
 //int gcomponent_removeanimation(...)
