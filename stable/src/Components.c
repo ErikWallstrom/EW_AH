@@ -101,6 +101,7 @@ int gcomponent_render(Graphics_Component* gcomponent, SDL_Renderer* renderer)
 		{
 			Animation* animation = array_getvalue(gcomponent->animations, gcomponent->animation_selected);
 			SDL_Rect s_rect = animation->s_rects[animation->frame_selected];
+			
 			if(SDL_GetTicks() - animation->time > animation->delay)
 			{
 				animation->time = SDL_GetTicks();

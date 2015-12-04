@@ -93,12 +93,12 @@ Entity* load_script_entity(lua_State* L, SDL_Renderer* renderer, const char* nam
 								lua_pop(L, 1);
 								
 								lua_pushnumber(L, 2);
-								frames[total_frames - 1].y = (lua_tointeger(L, -1) - 1) * height;
 								lua_gettable(L, -2);
-
+								frames[total_frames - 1].y = (lua_tointeger(L, -1) - 1) * height;
+								lua_pop(L, 1);
+								
 								frames[total_frames - 1].w = width;
 								frames[total_frames - 1].h = height;
-								lua_pop(L, 1);
 							}
 						}
 						lua_pop(L, 1);
