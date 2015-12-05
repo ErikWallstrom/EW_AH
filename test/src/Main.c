@@ -231,7 +231,10 @@ int process_events(Program* program)
 							lua_getglobal(program->script, entity_getname(entity));
 							lua_getfield(program->script, -1, "event_component");
 							lua_getfield(program->script, -1, "key_down");
-							if(lua_pcall(program->script, 0, 0, 0))
+							lua_pushnumber(program->script, 3.14); //Should be table of entity
+							char buffer[2] = {(char)event.key.keysym.sym, '\0'};
+							lua_pushstring(program->script, buffer);
+							if(lua_pcall(program->script, 2, 0, 0))
 							{
 								error_popup(lua_tostring(program->script, -1));
 							}
@@ -254,7 +257,10 @@ int process_events(Program* program)
 							lua_getglobal(program->script, entity_getname(entity));
 							lua_getfield(program->script, -1, "event_component");
 							lua_getfield(program->script, -1, "key_up");
-							if(lua_pcall(program->script, 0, 0, 0))
+							lua_pushnumber(program->script, 3.14); //Should be table of entity
+							char buffer[2] = {(char)event.key.keysym.sym, '\0'};
+							lua_pushstring(program->script, buffer);
+							if(lua_pcall(program->script, 2, 0, 0))
 							{
 								error_popup(lua_tostring(program->script, -1));
 							}

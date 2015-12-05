@@ -20,6 +20,7 @@
 	int 				gcomponent_render		(Graphics_Component* gcomponent, SDL_Renderer* renderer);
 	int 				gcomponent_addanimation	(Graphics_Component* gcomponent, int total_frames, 
 											 	 SDL_Rect* frames, unsigned int delay);
+												  
 	Event_Component*	ecomponent_create		(int key_down, int key_up, int left_click, int right_click);
 	
 #endif
