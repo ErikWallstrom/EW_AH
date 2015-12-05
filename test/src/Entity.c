@@ -77,7 +77,7 @@ void entity_destroy(Entity** entity)
 			{
 				for(int i = 0; i < array_getlength((*entity)->component_types); i++)
 				{
-					Component_Type* component_type = array_getvalue((*entity)->component_types, i);
+					int* component_type = array_getvalue((*entity)->component_types, i);
 					if(component_type != NULL)
 					{
 						free(component_type);
@@ -93,13 +93,13 @@ void entity_destroy(Entity** entity)
 	(*entity) = NULL;
 }
 
-void* entity_getcomponent(Entity* entity, Component_Type type)
+void* entity_getcomponent(Entity* entity, int type)
 {
 	if(entity != NULL)
 	{
 		for(int i = 0; i < array_getlength(entity->components); i++)
 		{
-			Component_Type* ctype = array_getvalue(entity->component_types, i);
+			int* ctype = array_getvalue(entity->component_types, i);
 			if(*ctype == type)
 			{
 				return array_getvalue(entity->components, i);
@@ -110,20 +110,20 @@ void* entity_getcomponent(Entity* entity, Component_Type type)
 	return NULL;
 }
 
-int entity_addcomponent(Entity* entity, Component_Type type, void* component)
+int entity_addcomponent(Entity* entity, int type, void* component)
 {
 	if(entity != NULL && component != NULL)
 	{
 		for(int i = 0; i < array_getlength(entity->component_types); i++)
 		{
-			Component_Type* ctype = array_getvalue(entity->component_types, i);
+			int* ctype = array_getvalue(entity->component_types, i);
 			if(*ctype == type)
 			{
 				return 0; //Component already exists
 			}
 		}
 		
-		Component_Type* ctype = malloc(sizeof(Component_Type));
+		int* ctype = malloc(sizeof(int));
 		if(ctype == NULL)
 		{
 			error_popup("Memory allocation failed (entity_addcomponent)");
@@ -140,13 +140,13 @@ int entity_addcomponent(Entity* entity, Component_Type type, void* component)
 	return 0; //Not pushed
 }
 
-int entity_removecomponent(Entity* entity, Component_Type type)
+int entity_removecomponent(Entity* entity, int type)
 {
 	if(entity != NULL)
 	{
 		for(int i = 0; i < array_getlength(entity->component_types); i++)
 		{
-			Component_Type* ctype = array_getvalue(entity->component_types, i);
+			int* ctype = array_getvalue(entity->component_types, i);
 			if(*ctype == type)
 			{
 				array_pop(entity->components, i);

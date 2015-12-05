@@ -4,7 +4,8 @@
 #include "Script.h"
 #include "Entity.h"
 #include "Libraries.h"
-#include "Components.h"
+#include "Event_Component.h"
+#include "Graphics_Component.h"
 
 //Standard library
 #include <math.h>

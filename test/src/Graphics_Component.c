@@ -1,17 +1,15 @@
-#include "Components.h"
-#include "Array.h"
+#include "Graphics_Component.h"
 #include "Error.h"
-
-#include "../include/SDL2/SDL.h"
-#include "../include/SDL2/SDL_ttf.h"
+#include "Array.h"
 #include "../include/SDL2/SDL_image.h"
-
 #include <math.h>
+#include <string.h>
 #include <stdlib.h>
 
 typedef struct
 {
 	SDL_Rect* s_rects;
+	char* name;
 	int total_frames;
 	int frame_selected;
 	unsigned int time;
@@ -75,7 +73,14 @@ void gcomponent_destroy(Graphics_Component** gcomponent)
 			
 			if((*gcomponent)->animations != NULL)
 			{
-				//TODO: Clean up memory in array
+				for(int i = 0; i < array_getlength((*gcomponent)->animations); i++)
+				{
+					Animation* animation = array_getvalue((*gcomponent)->animations, i);
+					free(animation->s_rects);
+					free(animation->name);
+					free(animation);
+				}
+				
 				array_destroy(&(*gcomponent)->animations);
 			}
 			
@@ -99,7 +104,8 @@ int gcomponent_render(Graphics_Component* gcomponent, SDL_Renderer* renderer)
 		
 		if(array_getlength(gcomponent->animations) > 0)
 		{
-			Animation* animation = array_getvalue(gcomponent->animations, gcomponent->animation_selected);
+			Animation* animation = array_getvalue(gcomponent->animations, 
+												  gcomponent->animation_selected);
 			SDL_Rect s_rect = animation->s_rects[animation->frame_selected];
 			
 			if(SDL_GetTicks() - animation->time > animation->delay)
@@ -112,11 +118,26 @@ int gcomponent_render(Graphics_Component* gcomponent, SDL_Renderer* renderer)
 				}
 			}
 			
-			SDL_RenderCopyEx(renderer, gcomponent->texture, &s_rect, &d_rect, gcomponent->rotation, NULL, SDL_FLIP_NONE);
+			SDL_RenderCopyEx(
+				renderer, 
+				gcomponent->texture, 
+				&s_rect, &d_rect, 
+				gcomponent->rotation, 
+				NULL, 
+				SDL_FLIP_NONE
+			);
 		}
 		else
 		{
-			SDL_RenderCopyEx(renderer, gcomponent->texture, NULL, &d_rect, gcomponent->rotation, NULL, SDL_FLIP_NONE);
+			SDL_RenderCopyEx(
+				renderer, 
+				gcomponent->texture, 
+				NULL, 
+				&d_rect, 
+				gcomponent->rotation, 
+				NULL, 
+				SDL_FLIP_NONE
+			);
 		}
 		
 		return 1;
@@ -125,7 +146,8 @@ int gcomponent_render(Graphics_Component* gcomponent, SDL_Renderer* renderer)
 	return 0;
 }
 
-int gcomponent_addanimation(Graphics_Component* gcomponent, int total_frames, SDL_Rect* frames, unsigned int delay)
+int gcomponent_createanimations(Graphics_Component* gcomponent, int total_frames, SDL_Rect* frames, 
+								const char* animation_name, unsigned int delay)
 {
 	Animation* animation = malloc(sizeof(Animation));
 	if(animation == NULL)
@@ -138,6 +160,13 @@ int gcomponent_addanimation(Graphics_Component* gcomponent, int total_frames, SD
 	animation->frame_selected = 0;
 	animation->time = SDL_GetTicks();
 	animation->delay = delay;
+	animation->name = malloc(strlen(animation_name) + 1);
+	if(animation->name == NULL)
+	{
+		error_popup("Memory allocation error");
+		return 0;
+	}
+	strcpy(animation->name, animation_name);
 	
 	animation->s_rects = malloc(sizeof(SDL_Rect) * total_frames);
 	if(animation->s_rects == NULL)
@@ -158,21 +187,17 @@ int gcomponent_addanimation(Graphics_Component* gcomponent, int total_frames, SD
 	return 1;
 }
 
-Event_Component* ecomponent_create(int key_down, int key_up, int left_click, int right_click)
+int gcomponent_selectanimation(Graphics_Component* gcomponent, const char* name)
 {
-	Event_Component* ecomponent = malloc(sizeof(Event_Component));
-	if(ecomponent == NULL)
+	for(int i = 0; i < array_getlength(gcomponent->animations); i++)
 	{
-		error_popup("Memory allocation error");
-		return NULL;
+		Animation* animation = array_getvalue(gcomponent->animations, i);
+		if(!strcmp(name, animation->name))
+		{
+			gcomponent->animation_selected = i;
+			return 1;
+		}
 	}
 	
-	ecomponent->key_down = key_down;
-	ecomponent->key_up = key_up;
-	ecomponent->left_click = left_click;
-	ecomponent->right_click = right_click;
-	
-	return ecomponent;
+	return 0;
 }
-
-//int gcomponent_removeanimation(...)
