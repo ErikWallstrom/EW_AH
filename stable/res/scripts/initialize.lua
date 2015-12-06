@@ -17,26 +17,41 @@ player = {
 		
 		animations = {
 			walk_right = {
-				delay = 1000,
-				{ 1, 1 },
+				delay = 500,
 				{ 2, 1 },
 				{ 3, 1 },
-				{ 4, 1 },
-
-				{ 1, 2 },
+			},
+			stop_right = {
+				{ 1, 1 }
+			},
+			walk_left = {
+				delay = 500,
 				{ 2, 2 },
 				{ 3, 2 },
-				{ 4, 2 }
 			},
+			stop_left = {
+				{ 1, 2 }
+			}
 		}
 	},
 	event_component = {
 		key_down = function(self, key)
-			print('Key was pressed')
+			if key == 'a' then
+				self.x = self.x - 10
+				self:set_animation('walk_left')
+			elseif key == 'd' then
+				self.x = self.x + 10
+				self:set_animation('walk_right')
+			end
 		end,
 		
 		key_up = function(self, key)
-			print('Key was released')
+			if key == 'a' then
+				self:set_animation('stop_left')
+			elseif key == 'd' then
+				self.x = self.x + 10
+				self:set_animation('stop_right')
+			end
 		end,
 		
 		left_click = function(self, key)
