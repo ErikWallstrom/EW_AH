@@ -436,3 +436,84 @@ Entity* script_loadentity(lua_State* L, const char* entity_name, SDL_Renderer* r
 	
 	return entity;
 }
+
+//*********************************************************************************************
+//Lua accessable functions
+
+int script_lua_selectanimation(lua_State* L)
+{
+	//1 is table
+	const char* name = lua_tostring(L, 2);
+	
+	lua_getfield(L, 1, "pointer");
+	Graphics_Component* gcomponent = lua_touserdata(L, -1);
+	gcomponent_selectanimation(gcomponent, name);
+	
+	return 0;
+}
+
+//*********************************************************************************************
+
+int script_pushentity(lua_State* L, Entity* entity)
+{
+	lua_createtable(L, 0, 7); //num of number key, num of string key
+	int table_pos = lua_gettop(L);
+	
+	Graphics_Component* gcomponent = entity_getcomponent(entity, COMPONENT_GRAPHICS);
+	if(gcomponent != NULL)
+	{
+		lua_pushliteral(L, "x");
+		lua_pushnumber(L, gcomponent_getx(gcomponent));
+		lua_settable(L, table_pos);
+		
+		lua_pushliteral(L, "y");
+		lua_pushnumber(L, gcomponent_gety(gcomponent));
+		lua_settable(L, table_pos);
+		
+		lua_pushliteral(L, "scale");
+		lua_pushnumber(L, gcomponent_getscale(gcomponent));
+		lua_settable(L, table_pos);
+		
+		lua_pushliteral(L, "rotation");
+		lua_pushnumber(L, gcomponent_getrotation(gcomponent));
+		lua_settable(L, table_pos);
+		
+		lua_pushliteral(L, "pointer");
+		lua_pushlightuserdata(L, gcomponent);
+		lua_settable(L, table_pos);
+		
+		lua_pushliteral(L, "set_animation");
+		lua_pushcfunction(L, script_lua_selectanimation);
+		lua_settable(L, table_pos);
+	}
+	
+	return 1; //TODO: Add error handeling
+}
+
+int script_popentity(lua_State* L)
+{
+	int table_pos = lua_gettop(L);
+	
+	lua_getfield(L, table_pos, "pointer");
+	Graphics_Component* gcomponent = lua_touserdata(L, -1);
+	lua_pop(L, 1);
+	
+	lua_getfield(L, table_pos, "x");
+	gcomponent_setx(gcomponent, lua_tonumber(L, -1));
+	lua_pop(L, 1);
+	
+	lua_getfield(L, table_pos, "y");
+	gcomponent_sety(gcomponent, lua_tonumber(L, -1));
+	lua_pop(L, 1);
+	
+	lua_getfield(L, table_pos, "scale");
+	gcomponent_setscale(gcomponent, lua_tonumber(L, -1));
+	lua_pop(L, 1);
+	
+	lua_getfield(L, table_pos, "rotation");
+	gcomponent_setrotation(gcomponent, lua_tonumber(L, -1));
+	lua_pop(L, 1);
+	
+	lua_pop(L, 1);
+	return 1; //TODO: Add error handeling
+}

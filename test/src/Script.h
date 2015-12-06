@@ -16,6 +16,7 @@
 									 
 	Entity*		script_loadentity	(lua_State* L, const char* entity_name, 
 									 SDL_Renderer* renderer);
-	//int 		script_pushentity	();
+	int 		script_pushentity	(lua_State* L, Entity* entity);
+	int 		script_popentity	(lua_State* L);
 
 #endif

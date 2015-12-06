@@ -76,14 +76,20 @@ int process_events(Program* program)
 							lua_getglobal(program->script, entity_getname(entity));
 							lua_getfield(program->script, -1, "event_component");
 							lua_getfield(program->script, -1, "key_down");
-							lua_pushnumber(program->script, 3.14); //Should be table of entity
+							int function_pos = lua_gettop(program->script);
+							
+							script_pushentity(program->script, entity);
+							lua_pushvalue(program->script, -1);
+							lua_insert(program->script, function_pos);
+							
 							char buffer[2] = {(char)event.key.keysym.sym, '\0'};
 							lua_pushstring(program->script, buffer);
+							
 							if(lua_pcall(program->script, 2, 0, 0))
 							{
 								error_popup(lua_tostring(program->script, -1));
 							}
-							
+							script_popentity(program->script);
 							lua_pop(program->script, 2);
 						}
 					}
@@ -102,7 +108,12 @@ int process_events(Program* program)
 							lua_getglobal(program->script, entity_getname(entity));
 							lua_getfield(program->script, -1, "event_component");
 							lua_getfield(program->script, -1, "key_up");
-							lua_pushnumber(program->script, 3.14); //Should be table of entity
+							int function_pos = lua_gettop(program->script);
+							
+							script_pushentity(program->script, entity);
+							lua_pushvalue(program->script, -1);
+							lua_insert(program->script, function_pos);
+							
 							char buffer[2] = {(char)event.key.keysym.sym, '\0'};
 							lua_pushstring(program->script, buffer);
 							if(lua_pcall(program->script, 2, 0, 0))
@@ -110,6 +121,7 @@ int process_events(Program* program)
 								error_popup(lua_tostring(program->script, -1));
 							}
 							
+							script_popentity(program->script);
 							lua_pop(program->script, 2);
 						}
 					}

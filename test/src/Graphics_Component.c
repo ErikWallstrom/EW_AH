@@ -201,3 +201,100 @@ int gcomponent_selectanimation(Graphics_Component* gcomponent, const char* name)
 	
 	return 0;
 }
+
+double gcomponent_getx(Graphics_Component* gcomponent)
+{
+	return gcomponent->x;
+}
+
+double gcomponent_gety(Graphics_Component* gcomponent)
+{
+	return gcomponent->y;
+}
+
+int gcomponent_getwidth(Graphics_Component* gcomponent)
+{
+	return gcomponent->width;
+}
+
+int gcomponent_getheight(Graphics_Component* gcomponent)
+{
+	return gcomponent->height;
+}
+
+double gcomponent_getscale(Graphics_Component* gcomponent)
+{
+	return gcomponent->scale;
+}
+
+double gcomponent_getrotation(Graphics_Component* gcomponent)
+{
+	return gcomponent->rotation;
+}
+
+int gcomponent_setx(Graphics_Component* gcomponent, double x)
+{
+	if(gcomponent != NULL)
+	{
+		gcomponent->x = x;
+		return 1;
+	}
+	
+	return 0;
+}
+
+int gcomponent_sety(Graphics_Component* gcomponent, double y)
+{
+	if(gcomponent != NULL)
+	{
+		gcomponent->y = y;
+		return 1;
+	}
+	
+	return 0;
+}
+
+int gcomponent_setwidth(Graphics_Component* gcomponent, int width)
+{
+	if(gcomponent != NULL)
+	{
+		gcomponent->width = width;
+		return 1;
+	}
+	
+	return 0;
+}
+
+int gcomponent_setheight(Graphics_Component* gcomponent, int height)
+{
+	if(gcomponent != NULL)
+	{
+		gcomponent->height = height;
+		return 1;
+	}
+	
+	return 0;
+}
+
+int gcomponent_setscale(Graphics_Component* gcomponent, double scale)
+{
+	if(gcomponent != NULL)
+	{
+		gcomponent->scale = scale;
+		return 1;
+	}
+	
+	return 0;
+}
+
+
+int gcomponent_setrotation(Graphics_Component* gcomponent, double rotation)
+{
+	if(gcomponent != NULL)
+	{
+		gcomponent->rotation = rotation;
+		return 1;
+	}
+	
+	return 0;
+}
