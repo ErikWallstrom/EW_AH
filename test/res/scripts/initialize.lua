@@ -34,6 +34,7 @@ player = {
 			}
 		}
 	},
+	
 	event_component = {
 		key_down = function(self, key)
 			if key == 'a' then
@@ -51,7 +52,6 @@ player = {
 			if key == 'a' then
 				self:set_animation('stop_left')
 			elseif key == 'd' then
-				self.x = self.x + 10
 				self:set_animation('stop_right')
 			end
 		end,
