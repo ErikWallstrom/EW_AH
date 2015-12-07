@@ -42,6 +42,8 @@ player = {
 			elseif key == 'd' then
 				self.x = self.x + 10
 				self:set_animation('walk_right')
+			elseif key == ' ' then
+				self.rotation = self.rotation + 50
 			end
 		end,
 		

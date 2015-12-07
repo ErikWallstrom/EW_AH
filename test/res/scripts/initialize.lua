@@ -38,10 +38,10 @@ player = {
 	event_component = {
 		key_down = function(self, key)
 			if key == 'a' then
-				self.x = self.x - 10
+				--self.x = self.x - 10
 				self:set_animation('walk_left')
 			elseif key == 'd' then
-				self.x = self.x + 10
+				--self.x = self.x + 10
 				self:set_animation('walk_right')
 			elseif key == ' ' then
 				self.rotation = self.rotation + 50
