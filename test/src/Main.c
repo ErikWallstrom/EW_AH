@@ -71,26 +71,28 @@ int process_events(Program* program)
 					Event_Component* ecomponent = entity_getcomponent(entity, COMPONENT_EVENT);
 					if(ecomponent != NULL)
 					{
-						if(ecomponent->key_down)
+						int exist = 0;
+						for(int i = 0; i < array_getlength(ecomponent->keys_down); i++)
 						{
-							lua_getglobal(program->script, entity_getname(entity));
-							lua_getfield(program->script, -1, "event_component");
-							lua_getfield(program->script, -1, "key_down");
-							int function_pos = lua_gettop(program->script);
-							
-							script_pushentity(program->script, entity);
-							lua_pushvalue(program->script, -1);
-							lua_insert(program->script, function_pos);
-							
-							char buffer[2] = {(char)event.key.keysym.sym, '\0'};
-							lua_pushstring(program->script, buffer);
-							
-							if(lua_pcall(program->script, 2, 0, 0))
+							char* key = array_getvalue(ecomponent->keys_down, i);
+							if(*key == (char)event.key.keysym.sym)
 							{
-								error_popup(lua_tostring(program->script, -1));
+								exist = 1;
+								break;
 							}
-							script_popentity(program->script);
-							lua_pop(program->script, 2);
+						}
+						
+						if(!exist)
+						{
+							char* key = malloc(sizeof(char));
+							if(key == NULL)
+							{
+								error_popup("Memory allocation error");
+								return 0;
+							}
+							
+							*key = (char)event.key.keysym.sym;
+							array_push(ecomponent->keys_down, 0, key);
 						}
 					}
 				}
@@ -103,30 +105,73 @@ int process_events(Program* program)
 					Event_Component* ecomponent = entity_getcomponent(entity, COMPONENT_EVENT);
 					if(ecomponent != NULL)
 					{
-						if(ecomponent->key_up)
+						int exist = -1;
+						for(int i = 0; i < array_getlength(ecomponent->keys_down); i++)
 						{
-							lua_getglobal(program->script, entity_getname(entity));
-							lua_getfield(program->script, -1, "event_component");
-							lua_getfield(program->script, -1, "key_up");
-							int function_pos = lua_gettop(program->script);
-							
-							script_pushentity(program->script, entity);
-							lua_pushvalue(program->script, -1);
-							lua_insert(program->script, function_pos);
-							
-							char buffer[2] = {(char)event.key.keysym.sym, '\0'};
-							lua_pushstring(program->script, buffer);
-							if(lua_pcall(program->script, 2, 0, 0))
+							char* key = array_getvalue(ecomponent->keys_down, i);
+							if(*key == (char)event.key.keysym.sym)
 							{
-								error_popup(lua_tostring(program->script, -1));
+								exist = i;
+								break;
 							}
-							
-							script_popentity(program->script);
-							lua_pop(program->script, 2);
 						}
+						
+						if(exist >= 0)
+						{
+							array_pop(ecomponent->keys_down, exist);
+						}
+						
+						lua_getglobal(program->script, entity_getname(entity));
+						lua_getfield(program->script, -1, "event_component");
+						lua_getfield(program->script, -1, "key_up");
+						int function_pos = lua_gettop(program->script);
+							
+						script_pushentity(program->script, entity);
+						lua_pushvalue(program->script, -1);
+						lua_insert(program->script, function_pos);
+						
+						char buffer[2] = {(char)event.key.keysym.sym, '\0'};
+						lua_pushstring(program->script, buffer);
+						if(lua_pcall(program->script, 2, 0, 0))
+						{
+							error_popup(lua_tostring(program->script, -1));
+						}
+						
+						script_popentity(program->script);
+						lua_pop(program->script, 2);
 					}
 				}
 			break;
+		}
+	}
+	
+	for(int i = 0; i < array_getlength(program->entities); i++)
+	{
+		Entity* entity = array_getvalue(program->entities, i);
+		Event_Component* ecomponent = entity_getcomponent(entity, COMPONENT_EVENT);
+		if(array_getlength(ecomponent->keys_down))
+		{
+			for(int i = array_getlength(ecomponent->keys_down) - 1; i >= 0; i--)
+			{
+				lua_getglobal(program->script, entity_getname(entity));
+				lua_getfield(program->script, -1, "event_component");
+				lua_getfield(program->script, -1, "key_down");
+				int function_pos = lua_gettop(program->script);
+								
+				script_pushentity(program->script, entity);
+				lua_pushvalue(program->script, -1);
+				lua_insert(program->script, function_pos);
+								
+				char buffer[2] = {*(char*)(array_getvalue(ecomponent->keys_down, i)), '\0'};
+				lua_pushstring(program->script, buffer);
+								
+				if(lua_pcall(program->script, 2, 0, 0))
+				{
+					error_popup(lua_tostring(program->script, -1));
+				}
+				script_popentity(program->script);
+				lua_pop(program->script, 2);
+			}
 		}
 	}
 	

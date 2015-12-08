@@ -428,7 +428,7 @@ Entity* script_loadentity(lua_State* L, const char* entity_name, SDL_Renderer* r
 			}
 			lua_pop(L, 1);
 			
-			entity_addcomponent(entity, COMPONENT_EVENT, ecomponent_create(key_down, key_up, left_click, right_click));
+			entity_addcomponent(entity, COMPONENT_EVENT, ecomponent_create());
 		}
 		lua_pop(L, 1);
 	}
