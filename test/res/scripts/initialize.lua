@@ -8,8 +8,8 @@ window = {
 player = { 
 	graphics_component = {
 		file = '../../res/images/TP_1.0_SpriteSheet.png',
-		x = 350.0,
-		y = 250.0,
+		x = window.width / 2.0,
+		y = window.height / 2.0,
 		scale = 6.0,
 		width = 11,
 		height = 18,
@@ -56,24 +56,17 @@ player = {
 			end
 		end,
 		
-		left_click = function(self, key)
-			
+		left_click = function(self, x, y)
+			self.x = x
+			self.y = y
 		end,
 		
-		right_click = function(self, key)
-			
+		right_click = function(self, x, y)
+			self.x = math.random(0, window.width)
+			self.y = math.random(0, window.height)
 		end
 	}
 }
-
-
-
-
-
-
-
-
-
 
 
 

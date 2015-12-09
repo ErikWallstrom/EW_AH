@@ -311,11 +311,11 @@ Entity* script_loadentity(lua_State* L, const char* entity_name, SDL_Renderer* r
 			lua_pop(L, 1);
 			
 			lua_getfield(L, -1, "x");
-			double x = lua_tonumber(L, -1) - ((double)width / 2.0);
+			double x = lua_tonumber(L, -1);
 			lua_pop(L, 1);
 			
 			lua_getfield(L, -1, "y");
-			double y = lua_tonumber(L, -1) - ((double)height / 2.0);
+			double y = lua_tonumber(L, -1);
 			lua_pop(L, 1);
 			
 			Graphics_Component* gcomponent = gcomponent_create(
@@ -396,38 +396,6 @@ Entity* script_loadentity(lua_State* L, const char* entity_name, SDL_Renderer* r
 		lua_getfield(L, -1, "event_component");
 		if(lua_istable(L, -1))
 		{
-			lua_getfield(L, -1, "key_down");
-			int key_down = 0;
-			if(lua_isfunction(L, -1))
-			{
-				key_down = 1;
-			}
-			lua_pop(L, 1);
-			
-			lua_getfield(L, -1, "key_up");
-			int key_up = 0;
-			if(lua_isfunction(L, -1))
-			{
-				key_up = 1;
-			}
-			lua_pop(L, 1);
-			
-			lua_getfield(L, -1, "left_click");
-			int left_click = 0;
-			if(lua_isfunction(L, -1))
-			{
-				left_click = 1;
-			}
-			lua_pop(L, 1);
-			
-			lua_getfield(L, -1, "right_click");
-			int right_click = 0;
-			if(lua_isfunction(L, -1))
-			{
-				right_click = 1;
-			}
-			lua_pop(L, 1);
-			
 			entity_addcomponent(entity, COMPONENT_EVENT, ecomponent_create());
 		}
 		lua_pop(L, 1);

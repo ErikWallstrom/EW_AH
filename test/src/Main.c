@@ -142,6 +142,55 @@ int process_events(Program* program)
 					}
 				}
 			break;
+			
+			case SDL_MOUSEBUTTONDOWN:
+				for(int i = 0; i < array_getlength(program->entities); i++)
+				{
+					Entity* entity = array_getvalue(program->entities, i);
+					if(event.button.button == SDL_BUTTON_LEFT)
+					{
+						lua_getglobal(program->script, entity_getname(entity));
+						lua_getfield(program->script, -1, "event_component");
+						lua_getfield(program->script, -1, "left_click");
+						int function_pos = lua_gettop(program->script);
+										
+						script_pushentity(program->script, entity);
+						lua_pushvalue(program->script, -1);
+						lua_insert(program->script, function_pos);
+										
+						lua_pushinteger(program->script, event.button.x);
+						lua_pushinteger(program->script, event.button.y);
+										
+						if(lua_pcall(program->script, 3, 0, 0))
+						{
+							error_popup(lua_tostring(program->script, -1));
+						}
+						script_popentity(program->script);
+						lua_pop(program->script, 2);
+					}
+					else
+					{
+						lua_getglobal(program->script, entity_getname(entity));
+						lua_getfield(program->script, -1, "event_component");
+						lua_getfield(program->script, -1, "right_click");
+						int function_pos = lua_gettop(program->script);
+										
+						script_pushentity(program->script, entity);
+						lua_pushvalue(program->script, -1);
+						lua_insert(program->script, function_pos);
+										
+						lua_pushinteger(program->script, event.button.x);
+						lua_pushinteger(program->script, event.button.y);
+										
+						if(lua_pcall(program->script, 3, 0, 0))
+						{
+							error_popup(lua_tostring(program->script, -1));
+						}
+						script_popentity(program->script);
+						lua_pop(program->script, 2);
+					}
+				}
+			break;
 		}
 	}
 	

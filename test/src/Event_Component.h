@@ -8,9 +8,6 @@
 	{
 		Array* keys_down; //Key up/down events
 		
-		int left_click;
-		int right_click;
-		
 	} Event_Component;
 	
 	Event_Component* ecomponent_create(void);

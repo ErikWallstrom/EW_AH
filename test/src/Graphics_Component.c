@@ -96,8 +96,8 @@ int gcomponent_render(Graphics_Component* gcomponent, SDL_Renderer* renderer)
 	if(gcomponent != NULL && renderer != NULL)
 	{
 		SDL_Rect d_rect = {
-			(int)round(gcomponent->x),
-			(int)round(gcomponent->y),
+			(int)round(gcomponent->x) - (gcomponent->width * gcomponent->scale) / 2.0,
+			(int)round(gcomponent->y) - (gcomponent->height * gcomponent->scale) / 2.0,
 			(int)round(gcomponent->width * gcomponent->scale),
 			(int)round(gcomponent->height * gcomponent->scale)
 		};
