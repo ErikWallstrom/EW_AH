@@ -17,7 +17,7 @@ player = {
 		
 		animations = {
 			walk_right = {
-				delay = 500,
+				delay = 250,
 				{ 2, 1 },
 				{ 3, 1 },
 			},
@@ -25,7 +25,7 @@ player = {
 				{ 1, 1 }
 			},
 			walk_left = {
-				delay = 500,
+				delay = 250,
 				{ 2, 2 },
 				{ 3, 2 },
 			},
@@ -44,7 +44,7 @@ player = {
 				self.x = self.x + 5
 				self:set_animation('walk_right')
 			elseif key == ' ' then
-				self.rotation = self.rotation + 50
+				self.rotation = self.rotation + 30
 			end
 		end,
 		
