@@ -1,8 +1,9 @@
 #include "Event_Component.h"
 #include "Error.h"
+#include "Array.h"
 #include <stdlib.h>
 
-Event_Component* ecomponent_create(int key_down, int key_up, int left_click, int right_click)
+Event_Component* ecomponent_create(void)
 {
 	Event_Component* ecomponent = malloc(sizeof(Event_Component));
 	if(ecomponent == NULL)
@@ -11,10 +12,6 @@ Event_Component* ecomponent_create(int key_down, int key_up, int left_click, int
 		return NULL;
 	}
 	
-	ecomponent->key_down = key_down;
-	ecomponent->key_up = key_up;
-	ecomponent->left_click = left_click;
-	ecomponent->right_click = right_click;
-	
+	ecomponent->keys_down = array_create();
 	return ecomponent;
 }
