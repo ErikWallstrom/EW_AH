@@ -1,20 +1,29 @@
 # EW_AH
-Indie game development project
+##### Indie game development project
 
-Members: Erik, Alexander, Jonathan ( Slacker ) 
+##### Members: Erik, Alexander, Jonathan ( Slacker ) 
 
-Erik:
-Programmer
-Scripter
-Project Manager
+### *Erik:*
 
-Alexander: 
-Graphic Designer
-Scripter ( part-time ) 
-Project Manager
-Music Editer
+*##### Programmer,
 
-Jonathan: 
-Nothing... ( ffs ) 
+*##### Scripter,
+
+*##### Project Manager,
+
+### *Alexander:* 
+
+*##### Graphics Designer,
+
+*##### Scripter ( part-time ),
+
+*##### Project Manager,
+
+*##### Music Editer, 
+
+
+### *Jonathan:* 
+
+*##### Nothing...yet ( ffs ) 
 
 
