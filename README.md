@@ -1,13 +1,13 @@
 # EW_AH
 ##### Indie game development project
 
-####### Members: 
+###### *Members:* 
 
-####### Erik, 
+###### Erik, 
 
-####### Alexander, 
+###### Alexander, 
 
-####### Jonathan ( Slacker ) 
+###### Jonathan ( Slacker ) 
 
 ### *Erik:*
 
@@ -30,6 +30,6 @@
 
 ### *Jonathan:* 
 
-*##### Nothing...yet ( ffs ) 
+* ##### Nothing...yet ( ffs ) 
 
 
