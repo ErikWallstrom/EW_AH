@@ -1,6 +1,6 @@
 # EW_AH
 
-![Image of Yaktocat](C:\Users\Admin\Desktop\EW_AH\test\res\images)
+![Image of Yaktocat](https://github.com/ErikWallstrom/EW_AH/blob/master/test/res/images/Logo.png)
 
 ##### Indie game development project
 
