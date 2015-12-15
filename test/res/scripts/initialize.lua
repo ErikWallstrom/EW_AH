@@ -55,7 +55,10 @@ player = {
 				self.scale = self.scale - 0.1
 			elseif key == 'p' then
 				self.scale = self.scale + 0.1
-			end
+			elseif key == 'r' then
+				self.x = window.width / 2
+				self.y = window.height / 2
+			end 
 		end,
 		
 		key_up = function(self, key)
