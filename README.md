@@ -1,5 +1,5 @@
 ![Image of Yaktocat](https://github.com/ErikWallstrom/EW_AH/blob/master/test/res/images/Logo.png)
-##### Indie game development project
+### Indie game development project
 
 ###### *Members:* 
 
