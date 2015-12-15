@@ -31,7 +31,7 @@ player = {
 			},
 			stop_left = {
 				{ 1, 2 }
-			}
+			},
 		}
 	},
 	
@@ -39,14 +39,27 @@ player = {
 		key_down = function(self, key)
 			print(key)
 			if key == 'a' then
-				self.x = self.x - 5
 				self:set_animation('walk_left')
+				self.x = self.x - math.cos(math.rad(self.rotation)) * 5
+				self.y = self.y - math.sin(math.rad(self.rotation)) * 5
 			elseif key == 'd' then
-				self.x = self.x + 5
 				self:set_animation('walk_right')
-			elseif key == ' ' then
-				self.rotation = self.rotation + 30
-			end
+				self.x = self.x + math.cos(math.rad(self.rotation)) * 5
+				self.y = self.y + math.sin(math.rad(self.rotation)) * 5
+			elseif key == 'q' then
+				self.rotation = self.rotation - 3
+			elseif key == 'e' then	
+				self.rotation = self.rotation + 3
+			elseif key == 'f' then
+				self.rotation = self.rotation - 180
+			elseif key == 'o' then
+				self.scale = self.scale - 0.1
+			elseif key == 'p' then
+				self.scale = self.scale + 0.1
+			elseif key == 'r' then
+				self.x = window.width / 2
+				self.y = window.height / 2
+			end 
 		end,
 		
 		key_up = function(self, key)
@@ -58,13 +71,11 @@ player = {
 		end,
 		
 		left_click = function(self, x, y)
-			self.x = x
-			self.y = y
+			--self.rotation = math.deg(math.atan2(self.y - y, self.x - x)) + 180
 		end,
 		
 		right_click = function(self, x, y)
-			self.x = math.random(0, window.width)
-			self.y = math.random(0, window.height)
+			--self.rotation = math.deg(math.atan2(self.y - y, self.x - x))
 		end
 	}
 }
