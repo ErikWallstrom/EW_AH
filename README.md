@@ -1,6 +1,6 @@
 # EW_AH
 
-![Image of Yaktocat](https://gyazo.com/ca2854f5cbc14d9f90a946b313f19694)
+![Image of Yaktocat](C:\Users\Admin\Desktop\EW_AH\test\res\images)
 
 ##### Indie game development project
 
