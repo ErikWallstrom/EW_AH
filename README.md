@@ -1,4 +1,7 @@
 # EW_AH
+
+![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+
 ##### Indie game development project
 
 ###### *Members:* 
