@@ -37,6 +37,7 @@ player = {
 	
 	event_component = {
 		key_down = function(self, key)
+			print(key)
 			if key == 'a' then
 				self.x = self.x - 5
 				self:set_animation('walk_left')
