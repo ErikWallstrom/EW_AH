@@ -1,14 +1,11 @@
-# EW_AH
-
 ![Image of Yaktocat](https://github.com/ErikWallstrom/EW_AH/blob/master/test/res/images/Logo.png)
-
 ##### Indie game development project
 
 ###### *Members:* 
 
 ###### Erik, 
 
-###### Alexander, 
+###### Alexander, 	
 
 ###### Jonathan ( Slacker ) 
 
