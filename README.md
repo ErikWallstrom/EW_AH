@@ -1,35 +1,35 @@
-      ![Image of Yaktocat](https://github.com/ErikWallstrom/EW_AH/blob/master/test/res/images/Logo.png)
-                            ### Indie game development project
+![Image of Yaktocat](https://github.com/ErikWallstrom/EW_AH/blob/master/test/res/images/Logo.png)
+###     Indie game development project
 
-                            ###### *Members:* 
+######     *Members:* 
 
-                            ###### Erik, 
+######     Erik, 
 
-                            ###### Alexander, 	
+######     Alexander, 	
 
-                            ###### Jonathan ( Slacker ) 
+######     Jonathan ( Slacker ) 
 
-                            ### *Erik:*
+###     *Erik:*
 
-                            * ##### Programmer,
+* #####     Programmer,
                             
-                            * ##### Scripter,
+* #####     Scripter,
 
-                            * ##### Project Manager,
+* #####     Project Manager,
 
-                            ### *Alexander:* 
+###     *Alexander:* 
 
-                            * ##### Graphics Designer,
+* #####     Graphics Designer,
 
-                             ##### Scripter ( part-time ),
+#####     Scripter ( part-time ),
 
-                            * ##### Project Manager,
+* #####     Project Manager,
 
-                            * ##### Music Editer, 
+* #####     Music Editer, 
 
-                            ### *Jonathan:* 
+###     *Jonathan:
 
-                            * Chilling,
+*     Chilling,
 
 
 
