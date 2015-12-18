@@ -21,7 +21,7 @@
 
 * ##### Graphics Designer,
 
-##### Scripter ( part-time ),
+* ##### Scripter ( part-time ),
 
 * ##### Project Manager,
 
