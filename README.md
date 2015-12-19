@@ -1,4 +1,8 @@
-<div style="text-align:center"><img src ="https://github.com/ErikWallstrom/EW_AH/blob/master/test/res/images/Logo.png" /></div>
+<p align="center">
+  <img src="https://github.com/ErikWallstrom/EW_AH/blob/master/test/res/images/Logo.png">
+  <b>Indie game development project</b>
+</p>
+
 ###     Indie game development project
 
 ###### *Members:* 
