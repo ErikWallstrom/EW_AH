@@ -3,7 +3,7 @@
 
 ###### *Members:* 
 
-###### <Erik,>
+###### <div style="text-align:center"><img src ="Erik," /></div>
 
 ###### Alexander, 	
 
