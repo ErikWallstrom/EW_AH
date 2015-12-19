@@ -1,9 +1,9 @@
-![Image of Yaktocat](https://github.com/ErikWallstrom/EW_AH/blob/master/test/res/images/Logo.png)
+<div style="text-align:center"><img src ="https://github.com/ErikWallstrom/EW_AH/blob/master/test/res/images/Logo.png" /></div>
 ###     Indie game development project
 
 ###### *Members:* 
 
-###### <div style="text-align:center"><img src ="Erik," /></div>
+###### Erik,
 
 ###### Alexander, 	
 
