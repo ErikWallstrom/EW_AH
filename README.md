@@ -1,17 +1,14 @@
-<p align="center">
-  <img src="https://github.com/ErikWallstrom/EW_AH/blob/master/test/res/images/Logo.png">
-  <b>Indie game development project</b>
-</p>
+![Image of Yaktocat](https://github.com/ErikWallstrom/EW_AH/blob/master/test/res/images/Logo.png)
 
-###     Indie game development project
+### Indie game development project
 
 ###### *Members:* 
 
-###### Erik,
+###### Erik, :angry:
 
-###### Alexander, 	
+###### Alexander, :kissing_smiling_eyes:	
 
-###### Jonathan ( Slacker ) 
+###### Jonathan :scream:
 
 ### *Erik:*
 
@@ -32,10 +29,6 @@
 * ##### Music Editer, 
 
 ### *Jonathan.*
-
-* ##### Chilling,
-
-*
 
 
 
