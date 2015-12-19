@@ -27,10 +27,11 @@
 
 * ##### Music Editer, 
 
-### *Jonathan:
+### *Jonathan.*
 
-* Chilling,
+* ##### Chilling,
 
+*
 
 
 
