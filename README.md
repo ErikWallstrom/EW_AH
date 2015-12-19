@@ -8,7 +8,7 @@
 
 ###### Alexander, :kissing_smiling_eyes:	
 
-###### Jonathan :scream:
+###### Jonathan, :scream:
 
 ### *Erik:*
 
