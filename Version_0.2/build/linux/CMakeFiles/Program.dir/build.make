@@ -81,12 +81,6 @@ Program_EXTERNAL_OBJECTS =
 
 Program: CMakeFiles/Program.dir/src/Main.c.o
 Program: CMakeFiles/Program.dir/build.make
-Program: ../../lib/linux/libSDL2_ttf-2.0.so
-Program: ../../lib/linux/libSDL2-2.0.so
-Program: ../../lib/linux/libSDL2_image-2.0.so
-Program: ../../lib/linux/libSDL2_net-2.0.so
-Program: ../../lib/linux/libSDL2_mixer-2.0.so
-Program: ../../lib/linux/liblua53.so
 Program: CMakeFiles/Program.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking C executable Program"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Program.dir/link.txt --verbose=$(VERBOSE)
