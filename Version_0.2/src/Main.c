@@ -1,3 +1,4 @@
+#include <SDL_2/SDL.h>
 #include <Lua_5.3/lauxlib.h>
 #include <Lua_5.3/lualib.h>
 
@@ -6,20 +7,29 @@
 
 int main(void)
 {
-	lua_State* script = luaL_newstate();
-	if(!script)
+	lua_State* L = luaL_newstate();
+	if(L)
+	{
+		luaL_openlibs(L);
+		if(luaL_dofile(L, "../../res/scripts/main.lua"))
+		{
+			return EXIT_FAILURE;
+		}
+	}
+	
+	if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO))
 	{
 		return EXIT_FAILURE;
 	}
 	
-	luaL_openlibs(script);
-	if(luaL_dofile(script, "../../res/scripts/main.lua"))
-	{
-		printf("Error: %s\n", 
-			lua_tolstring(script, -1, NULL)
-		);
-		return EXIT_FAILURE;
-	}
+	SDL_Window* window = SDL_CreateWindow(
+		"Hello World",
+		SDL_WINDOWPOS_CENTERED,
+		SDL_WINDOWPOS_CENTERED,
+		800, 600, 0
+	);
 	
-	lua_close(script);
+	SDL_Delay(3500);
+	SDL_DestroyWindow(window);
+	SDL_Quit();
 }

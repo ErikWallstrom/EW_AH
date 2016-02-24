@@ -36,7 +36,7 @@ EnvironmentGroup=
 Executable=file:///home/erikwallstrom/Documents/EW_AH/Version_0.2/
 External Terminal=gnome-terminal -e %exe
 Project Target=Version_0.2,Program
-Use External Terminal=true
+Use External Terminal=false
 Working Directory=
 isExecutable=false
 
