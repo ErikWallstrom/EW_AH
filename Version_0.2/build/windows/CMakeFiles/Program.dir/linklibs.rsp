@@ -1,0 +1,1 @@
+ -LC:/Users/erikw/Desktop/EW_AH/Version_0.2/build/windows  -L/usr/lib  -lSDL2 -llua53 -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32 

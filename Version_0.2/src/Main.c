@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#undef main
 int main(void)
 {
 	lua_State* L = luaL_newstate();

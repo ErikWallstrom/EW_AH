@@ -8,7 +8,7 @@ add_definitions("-std=c11 -Wall -Wextra -Wshadow -Wpedantic -Wfatal-errors -ggdb
 
 if(WIN32)
 	link_directories(build/windows /usr/lib)
-	set(LIBRARIES lua53)
+	set(LIBRARIES SDL2 lua53)
 elseif(UNIX AND NOT APPLE)
 	link_directories(build/linux /usr/lib)
 	set(LIBRARIES SDL2 lua53)
