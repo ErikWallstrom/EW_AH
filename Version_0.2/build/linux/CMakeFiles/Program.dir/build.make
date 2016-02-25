@@ -72,14 +72,89 @@ CMakeFiles/Program.dir/src/Main.c.o.provides: CMakeFiles/Program.dir/src/Main.c.
 
 CMakeFiles/Program.dir/src/Main.c.o.provides.build: CMakeFiles/Program.dir/src/Main.c.o
 
+CMakeFiles/Program.dir/src/Libraries.c.o: CMakeFiles/Program.dir/flags.make
+CMakeFiles/Program.dir/src/Libraries.c.o: ../../src/Libraries.c
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles $(CMAKE_PROGRESS_2)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/Program.dir/src/Libraries.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/Program.dir/src/Libraries.c.o   -c /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Libraries.c
+
+CMakeFiles/Program.dir/src/Libraries.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Program.dir/src/Libraries.c.i"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Libraries.c > CMakeFiles/Program.dir/src/Libraries.c.i
+
+CMakeFiles/Program.dir/src/Libraries.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Program.dir/src/Libraries.c.s"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Libraries.c -o CMakeFiles/Program.dir/src/Libraries.c.s
+
+CMakeFiles/Program.dir/src/Libraries.c.o.requires:
+.PHONY : CMakeFiles/Program.dir/src/Libraries.c.o.requires
+
+CMakeFiles/Program.dir/src/Libraries.c.o.provides: CMakeFiles/Program.dir/src/Libraries.c.o.requires
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Libraries.c.o.provides.build
+.PHONY : CMakeFiles/Program.dir/src/Libraries.c.o.provides
+
+CMakeFiles/Program.dir/src/Libraries.c.o.provides.build: CMakeFiles/Program.dir/src/Libraries.c.o
+
+CMakeFiles/Program.dir/src/Window.c.o: CMakeFiles/Program.dir/flags.make
+CMakeFiles/Program.dir/src/Window.c.o: ../../src/Window.c
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles $(CMAKE_PROGRESS_3)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/Program.dir/src/Window.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/Program.dir/src/Window.c.o   -c /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Window.c
+
+CMakeFiles/Program.dir/src/Window.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Program.dir/src/Window.c.i"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Window.c > CMakeFiles/Program.dir/src/Window.c.i
+
+CMakeFiles/Program.dir/src/Window.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Program.dir/src/Window.c.s"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Window.c -o CMakeFiles/Program.dir/src/Window.c.s
+
+CMakeFiles/Program.dir/src/Window.c.o.requires:
+.PHONY : CMakeFiles/Program.dir/src/Window.c.o.requires
+
+CMakeFiles/Program.dir/src/Window.c.o.provides: CMakeFiles/Program.dir/src/Window.c.o.requires
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Window.c.o.provides.build
+.PHONY : CMakeFiles/Program.dir/src/Window.c.o.provides
+
+CMakeFiles/Program.dir/src/Window.c.o.provides.build: CMakeFiles/Program.dir/src/Window.c.o
+
+CMakeFiles/Program.dir/src/Error.c.o: CMakeFiles/Program.dir/flags.make
+CMakeFiles/Program.dir/src/Error.c.o: ../../src/Error.c
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles $(CMAKE_PROGRESS_4)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/Program.dir/src/Error.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/Program.dir/src/Error.c.o   -c /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Error.c
+
+CMakeFiles/Program.dir/src/Error.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Program.dir/src/Error.c.i"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Error.c > CMakeFiles/Program.dir/src/Error.c.i
+
+CMakeFiles/Program.dir/src/Error.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Program.dir/src/Error.c.s"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Error.c -o CMakeFiles/Program.dir/src/Error.c.s
+
+CMakeFiles/Program.dir/src/Error.c.o.requires:
+.PHONY : CMakeFiles/Program.dir/src/Error.c.o.requires
+
+CMakeFiles/Program.dir/src/Error.c.o.provides: CMakeFiles/Program.dir/src/Error.c.o.requires
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Error.c.o.provides.build
+.PHONY : CMakeFiles/Program.dir/src/Error.c.o.provides
+
+CMakeFiles/Program.dir/src/Error.c.o.provides.build: CMakeFiles/Program.dir/src/Error.c.o
+
 # Object files for target Program
 Program_OBJECTS = \
-"CMakeFiles/Program.dir/src/Main.c.o"
+"CMakeFiles/Program.dir/src/Main.c.o" \
+"CMakeFiles/Program.dir/src/Libraries.c.o" \
+"CMakeFiles/Program.dir/src/Window.c.o" \
+"CMakeFiles/Program.dir/src/Error.c.o"
 
 # External object files for target Program
 Program_EXTERNAL_OBJECTS =
 
 Program: CMakeFiles/Program.dir/src/Main.c.o
+Program: CMakeFiles/Program.dir/src/Libraries.c.o
+Program: CMakeFiles/Program.dir/src/Window.c.o
+Program: CMakeFiles/Program.dir/src/Error.c.o
 Program: CMakeFiles/Program.dir/build.make
 Program: CMakeFiles/Program.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking C executable Program"
@@ -90,6 +165,9 @@ CMakeFiles/Program.dir/build: Program
 .PHONY : CMakeFiles/Program.dir/build
 
 CMakeFiles/Program.dir/requires: CMakeFiles/Program.dir/src/Main.c.o.requires
+CMakeFiles/Program.dir/requires: CMakeFiles/Program.dir/src/Libraries.c.o.requires
+CMakeFiles/Program.dir/requires: CMakeFiles/Program.dir/src/Window.c.o.requires
+CMakeFiles/Program.dir/requires: CMakeFiles/Program.dir/src/Error.c.o.requires
 .PHONY : CMakeFiles/Program.dir/requires
 
 CMakeFiles/Program.dir/clean:

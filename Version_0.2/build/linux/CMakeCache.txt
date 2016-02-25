@@ -116,7 +116,7 @@ CMAKE_OBJCOPY:FILEPATH=/usr/bin/objcopy
 CMAKE_OBJDUMP:FILEPATH=/usr/bin/objdump
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=C_Project
+CMAKE_PROJECT_NAME:STATIC=EW_AH
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -175,6 +175,12 @@ C_Project_BINARY_DIR:STATIC=/home/erikwallstrom/Documents/EW_AH/Version_0.2/buil
 
 //Value Computed by CMake
 C_Project_SOURCE_DIR:STATIC=/home/erikwallstrom/Documents/EW_AH/Version_0.2
+
+//Value Computed by CMake
+EW_AH_BINARY_DIR:STATIC=/home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux
+
+//Value Computed by CMake
+EW_AH_SOURCE_DIR:STATIC=/home/erikwallstrom/Documents/EW_AH/Version_0.2
 
 
 ########################

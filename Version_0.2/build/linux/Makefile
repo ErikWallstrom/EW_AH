@@ -111,6 +111,54 @@ Program/fast:
 	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/build
 .PHONY : Program/fast
 
+src/Error.o: src/Error.c.o
+.PHONY : src/Error.o
+
+# target to build an object file
+src/Error.c.o:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Error.c.o
+.PHONY : src/Error.c.o
+
+src/Error.i: src/Error.c.i
+.PHONY : src/Error.i
+
+# target to preprocess a source file
+src/Error.c.i:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Error.c.i
+.PHONY : src/Error.c.i
+
+src/Error.s: src/Error.c.s
+.PHONY : src/Error.s
+
+# target to generate assembly for a file
+src/Error.c.s:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Error.c.s
+.PHONY : src/Error.c.s
+
+src/Libraries.o: src/Libraries.c.o
+.PHONY : src/Libraries.o
+
+# target to build an object file
+src/Libraries.c.o:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Libraries.c.o
+.PHONY : src/Libraries.c.o
+
+src/Libraries.i: src/Libraries.c.i
+.PHONY : src/Libraries.i
+
+# target to preprocess a source file
+src/Libraries.c.i:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Libraries.c.i
+.PHONY : src/Libraries.c.i
+
+src/Libraries.s: src/Libraries.c.s
+.PHONY : src/Libraries.s
+
+# target to generate assembly for a file
+src/Libraries.c.s:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Libraries.c.s
+.PHONY : src/Libraries.c.s
+
 src/Main.o: src/Main.c.o
 .PHONY : src/Main.o
 
@@ -135,6 +183,30 @@ src/Main.c.s:
 	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Main.c.s
 .PHONY : src/Main.c.s
 
+src/Window.o: src/Window.c.o
+.PHONY : src/Window.o
+
+# target to build an object file
+src/Window.c.o:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Window.c.o
+.PHONY : src/Window.c.o
+
+src/Window.i: src/Window.c.i
+.PHONY : src/Window.i
+
+# target to preprocess a source file
+src/Window.c.i:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Window.c.i
+.PHONY : src/Window.c.i
+
+src/Window.s: src/Window.c.s
+.PHONY : src/Window.s
+
+# target to generate assembly for a file
+src/Window.c.s:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Window.c.s
+.PHONY : src/Window.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -144,9 +216,18 @@ help:
 	@echo "... Program"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... src/Error.o"
+	@echo "... src/Error.i"
+	@echo "... src/Error.s"
+	@echo "... src/Libraries.o"
+	@echo "... src/Libraries.i"
+	@echo "... src/Libraries.s"
 	@echo "... src/Main.o"
 	@echo "... src/Main.i"
 	@echo "... src/Main.s"
+	@echo "... src/Window.o"
+	@echo "... src/Window.i"
+	@echo "... src/Window.s"
 .PHONY : help
 
 

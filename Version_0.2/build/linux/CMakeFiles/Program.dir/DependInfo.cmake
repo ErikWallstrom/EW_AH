@@ -4,7 +4,10 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_C
+  "/home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Error.c" "/home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles/Program.dir/src/Error.c.o"
+  "/home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Libraries.c" "/home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles/Program.dir/src/Libraries.c.o"
   "/home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Main.c" "/home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles/Program.dir/src/Main.c.o"
+  "/home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Window.c" "/home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles/Program.dir/src/Window.c.o"
   )
 SET(CMAKE_C_COMPILER_ID "GNU")
 
