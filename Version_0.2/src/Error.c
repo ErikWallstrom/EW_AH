@@ -7,5 +7,5 @@ void error(const char* msg)
 		SDL_MESSAGEBOX_ERROR,
 		"Error", msg, NULL
 	);
-	error(EXIT_FAILURE);
+	exit(EXIT_FAILURE);
 }
