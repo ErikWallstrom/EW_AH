@@ -111,6 +111,102 @@ Program/fast:
 	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/build
 .PHONY : Program/fast
 
+src/Array.o: src/Array.c.o
+.PHONY : src/Array.o
+
+# target to build an object file
+src/Array.c.o:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Array.c.o
+.PHONY : src/Array.c.o
+
+src/Array.i: src/Array.c.i
+.PHONY : src/Array.i
+
+# target to preprocess a source file
+src/Array.c.i:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Array.c.i
+.PHONY : src/Array.c.i
+
+src/Array.s: src/Array.c.s
+.PHONY : src/Array.s
+
+# target to generate assembly for a file
+src/Array.c.s:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Array.c.s
+.PHONY : src/Array.c.s
+
+src/Dimension_Component.o: src/Dimension_Component.c.o
+.PHONY : src/Dimension_Component.o
+
+# target to build an object file
+src/Dimension_Component.c.o:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Dimension_Component.c.o
+.PHONY : src/Dimension_Component.c.o
+
+src/Dimension_Component.i: src/Dimension_Component.c.i
+.PHONY : src/Dimension_Component.i
+
+# target to preprocess a source file
+src/Dimension_Component.c.i:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Dimension_Component.c.i
+.PHONY : src/Dimension_Component.c.i
+
+src/Dimension_Component.s: src/Dimension_Component.c.s
+.PHONY : src/Dimension_Component.s
+
+# target to generate assembly for a file
+src/Dimension_Component.c.s:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Dimension_Component.c.s
+.PHONY : src/Dimension_Component.c.s
+
+src/Entity.o: src/Entity.c.o
+.PHONY : src/Entity.o
+
+# target to build an object file
+src/Entity.c.o:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Entity.c.o
+.PHONY : src/Entity.c.o
+
+src/Entity.i: src/Entity.c.i
+.PHONY : src/Entity.i
+
+# target to preprocess a source file
+src/Entity.c.i:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Entity.c.i
+.PHONY : src/Entity.c.i
+
+src/Entity.s: src/Entity.c.s
+.PHONY : src/Entity.s
+
+# target to generate assembly for a file
+src/Entity.c.s:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Entity.c.s
+.PHONY : src/Entity.c.s
+
+src/Entity_System.o: src/Entity_System.c.o
+.PHONY : src/Entity_System.o
+
+# target to build an object file
+src/Entity_System.c.o:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Entity_System.c.o
+.PHONY : src/Entity_System.c.o
+
+src/Entity_System.i: src/Entity_System.c.i
+.PHONY : src/Entity_System.i
+
+# target to preprocess a source file
+src/Entity_System.c.i:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Entity_System.c.i
+.PHONY : src/Entity_System.c.i
+
+src/Entity_System.s: src/Entity_System.c.s
+.PHONY : src/Entity_System.s
+
+# target to generate assembly for a file
+src/Entity_System.c.s:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Entity_System.c.s
+.PHONY : src/Entity_System.c.s
+
 src/Error.o: src/Error.c.o
 .PHONY : src/Error.o
 
@@ -134,6 +230,30 @@ src/Error.s: src/Error.c.s
 src/Error.c.s:
 	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Error.c.s
 .PHONY : src/Error.c.s
+
+src/Image_Component.o: src/Image_Component.c.o
+.PHONY : src/Image_Component.o
+
+# target to build an object file
+src/Image_Component.c.o:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Image_Component.c.o
+.PHONY : src/Image_Component.c.o
+
+src/Image_Component.i: src/Image_Component.c.i
+.PHONY : src/Image_Component.i
+
+# target to preprocess a source file
+src/Image_Component.c.i:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Image_Component.c.i
+.PHONY : src/Image_Component.c.i
+
+src/Image_Component.s: src/Image_Component.c.s
+.PHONY : src/Image_Component.s
+
+# target to generate assembly for a file
+src/Image_Component.c.s:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Image_Component.c.s
+.PHONY : src/Image_Component.c.s
 
 src/Libraries.o: src/Libraries.c.o
 .PHONY : src/Libraries.o
@@ -183,6 +303,54 @@ src/Main.c.s:
 	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Main.c.s
 .PHONY : src/Main.c.s
 
+src/Position_Component.o: src/Position_Component.c.o
+.PHONY : src/Position_Component.o
+
+# target to build an object file
+src/Position_Component.c.o:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Position_Component.c.o
+.PHONY : src/Position_Component.c.o
+
+src/Position_Component.i: src/Position_Component.c.i
+.PHONY : src/Position_Component.i
+
+# target to preprocess a source file
+src/Position_Component.c.i:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Position_Component.c.i
+.PHONY : src/Position_Component.c.i
+
+src/Position_Component.s: src/Position_Component.c.s
+.PHONY : src/Position_Component.s
+
+# target to generate assembly for a file
+src/Position_Component.c.s:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Position_Component.c.s
+.PHONY : src/Position_Component.c.s
+
+src/String.o: src/String.c.o
+.PHONY : src/String.o
+
+# target to build an object file
+src/String.c.o:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/String.c.o
+.PHONY : src/String.c.o
+
+src/String.i: src/String.c.i
+.PHONY : src/String.i
+
+# target to preprocess a source file
+src/String.c.i:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/String.c.i
+.PHONY : src/String.c.i
+
+src/String.s: src/String.c.s
+.PHONY : src/String.s
+
+# target to generate assembly for a file
+src/String.c.s:
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/String.c.s
+.PHONY : src/String.c.s
+
 src/Window.o: src/Window.c.o
 .PHONY : src/Window.o
 
@@ -216,15 +384,36 @@ help:
 	@echo "... Program"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... src/Array.o"
+	@echo "... src/Array.i"
+	@echo "... src/Array.s"
+	@echo "... src/Dimension_Component.o"
+	@echo "... src/Dimension_Component.i"
+	@echo "... src/Dimension_Component.s"
+	@echo "... src/Entity.o"
+	@echo "... src/Entity.i"
+	@echo "... src/Entity.s"
+	@echo "... src/Entity_System.o"
+	@echo "... src/Entity_System.i"
+	@echo "... src/Entity_System.s"
 	@echo "... src/Error.o"
 	@echo "... src/Error.i"
 	@echo "... src/Error.s"
+	@echo "... src/Image_Component.o"
+	@echo "... src/Image_Component.i"
+	@echo "... src/Image_Component.s"
 	@echo "... src/Libraries.o"
 	@echo "... src/Libraries.i"
 	@echo "... src/Libraries.s"
 	@echo "... src/Main.o"
 	@echo "... src/Main.i"
 	@echo "... src/Main.s"
+	@echo "... src/Position_Component.o"
+	@echo "... src/Position_Component.i"
+	@echo "... src/Position_Component.s"
+	@echo "... src/String.o"
+	@echo "... src/String.i"
+	@echo "... src/String.s"
 	@echo "... src/Window.o"
 	@echo "... src/Window.i"
 	@echo "... src/Window.s"
