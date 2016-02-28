@@ -1,7 +1,7 @@
 #include "Entity_System.h"
-#include "Dimension_Component.h"
-#include "Position_Component.h"
-#include "Image_Component.h"
+#include "Dimension.h"
+#include "Position.h"
+#include "Image.h"
 #include "Entity.h"
 #include "Array.h"
 #include "Error.h"
@@ -44,7 +44,7 @@ int lua_create_entity(lua_State* L)
 		lua_getfield(L, dimension_pos, "height");
 		if(lua_isinteger(L, -1) && lua_isinteger(L, -2))
 		{
-			Dimension_Component* d = Dimension_Component_create(
+			Dimension* d = Dimension_create(
 				lua_tointeger(L, -2), lua_tointeger(L, -1));
 			Entity_add(entity, d);
 		}
@@ -60,7 +60,7 @@ int lua_create_entity(lua_State* L)
 		lua_getfield(L, position_pos, "y");
 		if(lua_isnumber(L, -1) && lua_isnumber(L, -2))
 		{
-			Position_Component* p = Position_Component_create(
+			Position* p = Position_create(
 				lua_tonumber(L, -2), lua_tonumber(L, -1));
 			Entity_add(entity, p);
 		}
@@ -75,7 +75,7 @@ int lua_create_entity(lua_State* L)
 		lua_getfield(L, image_pos, "src");
 		if(lua_isstring(L, -1))
 		{
-			Image_Component* i = Image_Component_create(
+			Image* i = Image_create(
 				self->renderer, lua_tostring(L, -1));
 			if(i)
 			{
@@ -160,20 +160,20 @@ void Rendering_System(SDL_Renderer* renderer, Entity* e)
 		Entity_has(e, POSITION_COMPONENT) &&
 		Entity_has(e, IMAGE_COMPONENT))
 	{
-		Dimension_Component* d = Entity_get(e, DIMENSION_COMPONENT);
-		Position_Component* p = Entity_get(e, POSITION_COMPONENT);
-		Image_Component* i = Entity_get(e, IMAGE_COMPONENT);
+		Dimension* d = Entity_get(e, DIMENSION_COMPONENT);
+		Position* p = Entity_get(e, POSITION_COMPONENT);
+		Image* i = Entity_get(e, IMAGE_COMPONENT);
 		
 		SDL_Rect d_rect = {
-			.x = round(Position_Component_get_x(p) -
-				Dimension_Component_get_width(d) / 2.0),
-			.y = round(Position_Component_get_y(p) - 
-				Dimension_Component_get_height(d) / 2.0),
-			.w = Dimension_Component_get_width(d),
-			.h = Dimension_Component_get_height(d)
+			.x = round(Position_get_x(p) -
+				Dimension_get_width(d) / 2.0),
+			.y = round(Position_get_y(p) - 
+				Dimension_get_height(d) / 2.0),
+			.w = Dimension_get_width(d),
+			.h = Dimension_get_height(d)
 		};
 		
-		SDL_RenderCopy(renderer, Image_Component_get_texture(i),
+		SDL_RenderCopy(renderer, Image_get_texture(i),
 			NULL, &d_rect);
 	}
 }

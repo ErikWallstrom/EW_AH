@@ -164,32 +164,9 @@ CMakeFiles/Program.dir/src/Window.c.o.provides: CMakeFiles/Program.dir/src/Windo
 
 CMakeFiles/Program.dir/src/Window.c.o.provides.build: CMakeFiles/Program.dir/src/Window.c.o
 
-CMakeFiles/Program.dir/src/Image_Component.c.o: CMakeFiles/Program.dir/flags.make
-CMakeFiles/Program.dir/src/Image_Component.c.o: ../../src/Image_Component.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles $(CMAKE_PROGRESS_6)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/Program.dir/src/Image_Component.c.o"
-	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/Program.dir/src/Image_Component.c.o   -c /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Image_Component.c
-
-CMakeFiles/Program.dir/src/Image_Component.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Program.dir/src/Image_Component.c.i"
-	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Image_Component.c > CMakeFiles/Program.dir/src/Image_Component.c.i
-
-CMakeFiles/Program.dir/src/Image_Component.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Program.dir/src/Image_Component.c.s"
-	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Image_Component.c -o CMakeFiles/Program.dir/src/Image_Component.c.s
-
-CMakeFiles/Program.dir/src/Image_Component.c.o.requires:
-.PHONY : CMakeFiles/Program.dir/src/Image_Component.c.o.requires
-
-CMakeFiles/Program.dir/src/Image_Component.c.o.provides: CMakeFiles/Program.dir/src/Image_Component.c.o.requires
-	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Image_Component.c.o.provides.build
-.PHONY : CMakeFiles/Program.dir/src/Image_Component.c.o.provides
-
-CMakeFiles/Program.dir/src/Image_Component.c.o.provides.build: CMakeFiles/Program.dir/src/Image_Component.c.o
-
 CMakeFiles/Program.dir/src/Array.c.o: CMakeFiles/Program.dir/flags.make
 CMakeFiles/Program.dir/src/Array.c.o: ../../src/Array.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles $(CMAKE_PROGRESS_7)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles $(CMAKE_PROGRESS_6)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/Program.dir/src/Array.c.o"
 	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/Program.dir/src/Array.c.o   -c /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Array.c
 
@@ -210,32 +187,32 @@ CMakeFiles/Program.dir/src/Array.c.o.provides: CMakeFiles/Program.dir/src/Array.
 
 CMakeFiles/Program.dir/src/Array.c.o.provides.build: CMakeFiles/Program.dir/src/Array.c.o
 
-CMakeFiles/Program.dir/src/Dimension_Component.c.o: CMakeFiles/Program.dir/flags.make
-CMakeFiles/Program.dir/src/Dimension_Component.c.o: ../../src/Dimension_Component.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles $(CMAKE_PROGRESS_8)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/Program.dir/src/Dimension_Component.c.o"
-	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/Program.dir/src/Dimension_Component.c.o   -c /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Dimension_Component.c
+CMakeFiles/Program.dir/src/Dimension.c.o: CMakeFiles/Program.dir/flags.make
+CMakeFiles/Program.dir/src/Dimension.c.o: ../../src/Dimension.c
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles $(CMAKE_PROGRESS_7)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/Program.dir/src/Dimension.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/Program.dir/src/Dimension.c.o   -c /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Dimension.c
 
-CMakeFiles/Program.dir/src/Dimension_Component.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Program.dir/src/Dimension_Component.c.i"
-	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Dimension_Component.c > CMakeFiles/Program.dir/src/Dimension_Component.c.i
+CMakeFiles/Program.dir/src/Dimension.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Program.dir/src/Dimension.c.i"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Dimension.c > CMakeFiles/Program.dir/src/Dimension.c.i
 
-CMakeFiles/Program.dir/src/Dimension_Component.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Program.dir/src/Dimension_Component.c.s"
-	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Dimension_Component.c -o CMakeFiles/Program.dir/src/Dimension_Component.c.s
+CMakeFiles/Program.dir/src/Dimension.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Program.dir/src/Dimension.c.s"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Dimension.c -o CMakeFiles/Program.dir/src/Dimension.c.s
 
-CMakeFiles/Program.dir/src/Dimension_Component.c.o.requires:
-.PHONY : CMakeFiles/Program.dir/src/Dimension_Component.c.o.requires
+CMakeFiles/Program.dir/src/Dimension.c.o.requires:
+.PHONY : CMakeFiles/Program.dir/src/Dimension.c.o.requires
 
-CMakeFiles/Program.dir/src/Dimension_Component.c.o.provides: CMakeFiles/Program.dir/src/Dimension_Component.c.o.requires
-	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Dimension_Component.c.o.provides.build
-.PHONY : CMakeFiles/Program.dir/src/Dimension_Component.c.o.provides
+CMakeFiles/Program.dir/src/Dimension.c.o.provides: CMakeFiles/Program.dir/src/Dimension.c.o.requires
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Dimension.c.o.provides.build
+.PHONY : CMakeFiles/Program.dir/src/Dimension.c.o.provides
 
-CMakeFiles/Program.dir/src/Dimension_Component.c.o.provides.build: CMakeFiles/Program.dir/src/Dimension_Component.c.o
+CMakeFiles/Program.dir/src/Dimension.c.o.provides.build: CMakeFiles/Program.dir/src/Dimension.c.o
 
 CMakeFiles/Program.dir/src/Libraries.c.o: CMakeFiles/Program.dir/flags.make
 CMakeFiles/Program.dir/src/Libraries.c.o: ../../src/Libraries.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles $(CMAKE_PROGRESS_9)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles $(CMAKE_PROGRESS_8)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/Program.dir/src/Libraries.c.o"
 	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/Program.dir/src/Libraries.c.o   -c /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Libraries.c
 
@@ -256,32 +233,9 @@ CMakeFiles/Program.dir/src/Libraries.c.o.provides: CMakeFiles/Program.dir/src/Li
 
 CMakeFiles/Program.dir/src/Libraries.c.o.provides.build: CMakeFiles/Program.dir/src/Libraries.c.o
 
-CMakeFiles/Program.dir/src/Position_Component.c.o: CMakeFiles/Program.dir/flags.make
-CMakeFiles/Program.dir/src/Position_Component.c.o: ../../src/Position_Component.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles $(CMAKE_PROGRESS_10)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/Program.dir/src/Position_Component.c.o"
-	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/Program.dir/src/Position_Component.c.o   -c /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Position_Component.c
-
-CMakeFiles/Program.dir/src/Position_Component.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Program.dir/src/Position_Component.c.i"
-	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Position_Component.c > CMakeFiles/Program.dir/src/Position_Component.c.i
-
-CMakeFiles/Program.dir/src/Position_Component.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Program.dir/src/Position_Component.c.s"
-	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Position_Component.c -o CMakeFiles/Program.dir/src/Position_Component.c.s
-
-CMakeFiles/Program.dir/src/Position_Component.c.o.requires:
-.PHONY : CMakeFiles/Program.dir/src/Position_Component.c.o.requires
-
-CMakeFiles/Program.dir/src/Position_Component.c.o.provides: CMakeFiles/Program.dir/src/Position_Component.c.o.requires
-	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Position_Component.c.o.provides.build
-.PHONY : CMakeFiles/Program.dir/src/Position_Component.c.o.provides
-
-CMakeFiles/Program.dir/src/Position_Component.c.o.provides.build: CMakeFiles/Program.dir/src/Position_Component.c.o
-
 CMakeFiles/Program.dir/src/Entity.c.o: CMakeFiles/Program.dir/flags.make
 CMakeFiles/Program.dir/src/Entity.c.o: ../../src/Entity.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles $(CMAKE_PROGRESS_11)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles $(CMAKE_PROGRESS_9)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/Program.dir/src/Entity.c.o"
 	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/Program.dir/src/Entity.c.o   -c /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Entity.c
 
@@ -302,6 +256,52 @@ CMakeFiles/Program.dir/src/Entity.c.o.provides: CMakeFiles/Program.dir/src/Entit
 
 CMakeFiles/Program.dir/src/Entity.c.o.provides.build: CMakeFiles/Program.dir/src/Entity.c.o
 
+CMakeFiles/Program.dir/src/Position.c.o: CMakeFiles/Program.dir/flags.make
+CMakeFiles/Program.dir/src/Position.c.o: ../../src/Position.c
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles $(CMAKE_PROGRESS_10)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/Program.dir/src/Position.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/Program.dir/src/Position.c.o   -c /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Position.c
+
+CMakeFiles/Program.dir/src/Position.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Program.dir/src/Position.c.i"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Position.c > CMakeFiles/Program.dir/src/Position.c.i
+
+CMakeFiles/Program.dir/src/Position.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Program.dir/src/Position.c.s"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Position.c -o CMakeFiles/Program.dir/src/Position.c.s
+
+CMakeFiles/Program.dir/src/Position.c.o.requires:
+.PHONY : CMakeFiles/Program.dir/src/Position.c.o.requires
+
+CMakeFiles/Program.dir/src/Position.c.o.provides: CMakeFiles/Program.dir/src/Position.c.o.requires
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Position.c.o.provides.build
+.PHONY : CMakeFiles/Program.dir/src/Position.c.o.provides
+
+CMakeFiles/Program.dir/src/Position.c.o.provides.build: CMakeFiles/Program.dir/src/Position.c.o
+
+CMakeFiles/Program.dir/src/Image.c.o: CMakeFiles/Program.dir/flags.make
+CMakeFiles/Program.dir/src/Image.c.o: ../../src/Image.c
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles $(CMAKE_PROGRESS_11)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/Program.dir/src/Image.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/Program.dir/src/Image.c.o   -c /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Image.c
+
+CMakeFiles/Program.dir/src/Image.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Program.dir/src/Image.c.i"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -E /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Image.c > CMakeFiles/Program.dir/src/Image.c.i
+
+CMakeFiles/Program.dir/src/Image.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Program.dir/src/Image.c.s"
+	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -S /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Image.c -o CMakeFiles/Program.dir/src/Image.c.s
+
+CMakeFiles/Program.dir/src/Image.c.o.requires:
+.PHONY : CMakeFiles/Program.dir/src/Image.c.o.requires
+
+CMakeFiles/Program.dir/src/Image.c.o.provides: CMakeFiles/Program.dir/src/Image.c.o.requires
+	$(MAKE) -f CMakeFiles/Program.dir/build.make CMakeFiles/Program.dir/src/Image.c.o.provides.build
+.PHONY : CMakeFiles/Program.dir/src/Image.c.o.provides
+
+CMakeFiles/Program.dir/src/Image.c.o.provides.build: CMakeFiles/Program.dir/src/Image.c.o
+
 # Object files for target Program
 Program_OBJECTS = \
 "CMakeFiles/Program.dir/src/Error.c.o" \
@@ -309,12 +309,12 @@ Program_OBJECTS = \
 "CMakeFiles/Program.dir/src/Main.c.o" \
 "CMakeFiles/Program.dir/src/Entity_System.c.o" \
 "CMakeFiles/Program.dir/src/Window.c.o" \
-"CMakeFiles/Program.dir/src/Image_Component.c.o" \
 "CMakeFiles/Program.dir/src/Array.c.o" \
-"CMakeFiles/Program.dir/src/Dimension_Component.c.o" \
+"CMakeFiles/Program.dir/src/Dimension.c.o" \
 "CMakeFiles/Program.dir/src/Libraries.c.o" \
-"CMakeFiles/Program.dir/src/Position_Component.c.o" \
-"CMakeFiles/Program.dir/src/Entity.c.o"
+"CMakeFiles/Program.dir/src/Entity.c.o" \
+"CMakeFiles/Program.dir/src/Position.c.o" \
+"CMakeFiles/Program.dir/src/Image.c.o"
 
 # External object files for target Program
 Program_EXTERNAL_OBJECTS =
@@ -324,12 +324,12 @@ Program: CMakeFiles/Program.dir/src/String.c.o
 Program: CMakeFiles/Program.dir/src/Main.c.o
 Program: CMakeFiles/Program.dir/src/Entity_System.c.o
 Program: CMakeFiles/Program.dir/src/Window.c.o
-Program: CMakeFiles/Program.dir/src/Image_Component.c.o
 Program: CMakeFiles/Program.dir/src/Array.c.o
-Program: CMakeFiles/Program.dir/src/Dimension_Component.c.o
+Program: CMakeFiles/Program.dir/src/Dimension.c.o
 Program: CMakeFiles/Program.dir/src/Libraries.c.o
-Program: CMakeFiles/Program.dir/src/Position_Component.c.o
 Program: CMakeFiles/Program.dir/src/Entity.c.o
+Program: CMakeFiles/Program.dir/src/Position.c.o
+Program: CMakeFiles/Program.dir/src/Image.c.o
 Program: CMakeFiles/Program.dir/build.make
 Program: CMakeFiles/Program.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking C executable Program"
@@ -344,12 +344,12 @@ CMakeFiles/Program.dir/requires: CMakeFiles/Program.dir/src/String.c.o.requires
 CMakeFiles/Program.dir/requires: CMakeFiles/Program.dir/src/Main.c.o.requires
 CMakeFiles/Program.dir/requires: CMakeFiles/Program.dir/src/Entity_System.c.o.requires
 CMakeFiles/Program.dir/requires: CMakeFiles/Program.dir/src/Window.c.o.requires
-CMakeFiles/Program.dir/requires: CMakeFiles/Program.dir/src/Image_Component.c.o.requires
 CMakeFiles/Program.dir/requires: CMakeFiles/Program.dir/src/Array.c.o.requires
-CMakeFiles/Program.dir/requires: CMakeFiles/Program.dir/src/Dimension_Component.c.o.requires
+CMakeFiles/Program.dir/requires: CMakeFiles/Program.dir/src/Dimension.c.o.requires
 CMakeFiles/Program.dir/requires: CMakeFiles/Program.dir/src/Libraries.c.o.requires
-CMakeFiles/Program.dir/requires: CMakeFiles/Program.dir/src/Position_Component.c.o.requires
 CMakeFiles/Program.dir/requires: CMakeFiles/Program.dir/src/Entity.c.o.requires
+CMakeFiles/Program.dir/requires: CMakeFiles/Program.dir/src/Position.c.o.requires
+CMakeFiles/Program.dir/requires: CMakeFiles/Program.dir/src/Image.c.o.requires
 .PHONY : CMakeFiles/Program.dir/requires
 
 CMakeFiles/Program.dir/clean:

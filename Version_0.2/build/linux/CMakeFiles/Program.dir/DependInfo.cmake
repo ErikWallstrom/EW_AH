@@ -5,14 +5,14 @@ SET(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_C
   "/home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Array.c" "/home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles/Program.dir/src/Array.c.o"
-  "/home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Dimension_Component.c" "/home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles/Program.dir/src/Dimension_Component.c.o"
+  "/home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Dimension.c" "/home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles/Program.dir/src/Dimension.c.o"
   "/home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Entity.c" "/home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles/Program.dir/src/Entity.c.o"
   "/home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Entity_System.c" "/home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles/Program.dir/src/Entity_System.c.o"
   "/home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Error.c" "/home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles/Program.dir/src/Error.c.o"
-  "/home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Image_Component.c" "/home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles/Program.dir/src/Image_Component.c.o"
+  "/home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Image.c" "/home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles/Program.dir/src/Image.c.o"
   "/home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Libraries.c" "/home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles/Program.dir/src/Libraries.c.o"
   "/home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Main.c" "/home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles/Program.dir/src/Main.c.o"
-  "/home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Position_Component.c" "/home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles/Program.dir/src/Position_Component.c.o"
+  "/home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Position.c" "/home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles/Program.dir/src/Position.c.o"
   "/home/erikwallstrom/Documents/EW_AH/Version_0.2/src/String.c" "/home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles/Program.dir/src/String.c.o"
   "/home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Window.c" "/home/erikwallstrom/Documents/EW_AH/Version_0.2/build/linux/CMakeFiles/Program.dir/src/Window.c.o"
   )

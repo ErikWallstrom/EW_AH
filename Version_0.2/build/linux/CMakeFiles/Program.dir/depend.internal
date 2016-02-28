@@ -5,10 +5,10 @@ CMakeFiles/Program.dir/src/Array.c.o
  /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Array.c
  /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Array.h
  /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Error.h
-CMakeFiles/Program.dir/src/Dimension_Component.c.o
+CMakeFiles/Program.dir/src/Dimension.c.o
  /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Component.h
- /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Dimension_Component.c
- /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Dimension_Component.h
+ /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Dimension.c
+ /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Dimension.h
  /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Error.h
  /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/String.h
 CMakeFiles/Program.dir/src/Entity.c.o
@@ -76,13 +76,13 @@ CMakeFiles/Program.dir/src/Entity_System.c.o
  ../../include/SDL_2/close_code.h
  /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Array.h
  /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Component.h
- /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Dimension_Component.h
+ /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Dimension.h
  /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Entity.h
  /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Entity_System.c
  /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Entity_System.h
  /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Error.h
- /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Image_Component.h
- /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Position_Component.h
+ /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Image.h
+ /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Position.h
  /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/String.h
  /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Window.h
 CMakeFiles/Program.dir/src/Error.c.o
@@ -138,7 +138,7 @@ CMakeFiles/Program.dir/src/Error.c.o
  ../../include/SDL_2/close_code.h
  /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Error.c
  /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Error.h
-CMakeFiles/Program.dir/src/Image_Component.c.o
+CMakeFiles/Program.dir/src/Image.c.o
  ../../include/SDL_2/SDL.h
  ../../include/SDL_2/SDL_assert.h
  ../../include/SDL_2/SDL_atomic.h
@@ -192,8 +192,8 @@ CMakeFiles/Program.dir/src/Image_Component.c.o
  ../../include/SDL_2/close_code.h
  /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Component.h
  /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Error.h
- /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Image_Component.c
- /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Image_Component.h
+ /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Image.c
+ /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Image.h
  /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/String.h
 CMakeFiles/Program.dir/src/Libraries.c.o
  ../../include/SDL_2/SDL.h
@@ -315,11 +315,11 @@ CMakeFiles/Program.dir/src/Main.c.o
  /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Main.c
  /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/String.h
  /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Window.h
-CMakeFiles/Program.dir/src/Position_Component.c.o
+CMakeFiles/Program.dir/src/Position.c.o
  /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Component.h
  /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Error.h
- /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Position_Component.c
- /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Position_Component.h
+ /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Position.c
+ /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Position.h
  /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/String.h
 CMakeFiles/Program.dir/src/String.c.o
  /home/erikwallstrom/Documents/EW_AH/Version_0.2/src/Error.h
